@@ -41,20 +41,35 @@
   .dot{width:10px;height:10px;border-radius:50%;background:var(--orange);opacity:0.5;}
   .dot.active{opacity:1;width:28px;border-radius:5px;}
 
+  /* TAB BAR */
+  .tabs-bar{position:sticky;top:0;z-index:100;background:rgba(255,253,231,0.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--yellow-accent);box-shadow:0 2px 12px rgba(121,85,72,0.08);}
+  .tabs-inner{max-width:860px;margin:0 auto;display:flex;gap:8px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;}
+  .tabs-inner::-webkit-scrollbar{display:none;}
+  .tab-btn{flex:1 0 70px;border:2px solid var(--yellow-accent);background:var(--white);border-radius:14px;padding:9px 10px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;transition:all 0.2s;font-family:'Noto Sans TC',sans-serif;white-space:nowrap;}
+  .tab-btn:hover{border-color:var(--orange);background:var(--orange-pale);}
+  .tab-btn.active{background:var(--orange);border-color:var(--orange-dark);}
+  .tab-btn.active .tab-name{color:white;}
+  .tab-btn.active .tab-date{color:rgba(255,255,255,0.80);}
+  .tab-icon{font-size:17px;line-height:1;}
+  .tab-name{font-size:12px;font-weight:700;color:var(--brown-dark);line-height:1.3;}
+  .tab-date{font-size:10px;color:var(--brown-light);letter-spacing:0.3px;}
+
+  /* TAB PANELS */
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
   /* LAYOUT */
-  .container{max-width:860px;margin:0 auto;padding:0 20px 60px;}
-  .section-header{text-align:center;padding:60px 20px 30px;}
-  .section-header h2{font-size:24px;color:var(--brown-dark);font-weight:700;}
+  .container{max-width:860px;margin:0 auto;padding:30px 20px 60px;}
 
   /* INFO STRIP */
-  .info-strip{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:30px 20px 50px;max-width:860px;margin:0 auto;}
-  .info-card{background:var(--white);border:2px solid var(--yellow-accent);border-radius:18px;padding:18px 22px;flex:1 1 180px;text-align:center;box-shadow:var(--shadow);}
+  .info-strip{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:28px 20px 10px;max-width:860px;margin:0 auto;}
+  .info-card{background:var(--white);border:2px solid var(--yellow-accent);border-radius:18px;padding:18px 22px;flex:1 1 160px;text-align:center;box-shadow:var(--shadow);}
   .info-card .icon{font-size:28px;margin-bottom:6px;}
   .info-card .label{font-size:11px;color:var(--brown-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
   .info-card .value{font-size:14px;font-weight:600;color:var(--text-main);}
 
   /* DAY SECTION */
-  .day-section{margin-bottom:52px;}
+  .day-section{margin-bottom:20px;}
   .day-header{display:flex;align-items:center;gap:18px;margin-bottom:24px;padding:22px 28px;border-radius:24px;overflow:hidden;}
   .day-header.day1{background:linear-gradient(135deg,#FFFDE7,#FFF9C4);border-left:6px solid #FFD54F;}
   .day-header.day2{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border-left:6px solid #FFB74D;}
@@ -105,34 +120,38 @@
   .meal-card .meal-type{font-size:10px;color:var(--brown-light);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
   .meal-card .meal-name{font-size:15px;font-weight:600;color:var(--text-main);margin-bottom:4px;}
   .meal-card .meal-note{font-size:12px;color:var(--text-sub);}
-  .divider{text-align:center;margin:40px 0 30px;position:relative;}
-  .divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--yellow-accent);opacity:0.5;}
-  .divider span{position:relative;background:var(--cream);padding:0 16px;font-size:20px;}
   .tip-box{background:var(--white);border-radius:20px;padding:22px 26px;margin:20px 0;box-shadow:var(--shadow);border-top:4px solid var(--orange);}
   .tip-box h4{font-size:14px;font-weight:700;color:var(--brown-dark);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
   .tip-box p,.tip-box li{font-size:13px;color:var(--text-sub);line-height:1.7;}
   .tip-box ul{padding-left:18px;}
   .tip-box ul li{margin-bottom:4px;}
 
+  /* OVERVIEW GRID */
+  .overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px;}
+  .overview-title{font-size:22px;font-weight:700;color:var(--brown-dark);margin-bottom:4px;padding-top:28px;}
+
   /* FOOTER */
-  .footer{background:linear-gradient(135deg,#FFF9C4,#FFECB3);text-align:center;padding:50px 20px;margin-top:60px;}
+  .footer{background:linear-gradient(135deg,#FFF9C4,#FFECB3);text-align:center;padding:50px 20px;margin-top:20px;}
   .orange-footer{width:70px;margin-bottom:16px;filter:drop-shadow(0 4px 10px rgba(217,96,0,0.18));}
   .footer h3{font-size:18px;font-weight:700;color:var(--brown-dark);margin-bottom:8px;}
   .footer p{font-size:13px;color:var(--brown);}
 
-  @media(max-width:600px){.day-num{font-size:36px;min-width:50px;}.day-info .day-title{font-size:17px;}.timeline{margin-left:6px;}.cd-num{font-size:26px;min-width:42px;}}
+  @media(max-width:600px){
+    .day-num{font-size:36px;min-width:50px;}
+    .day-info .day-title{font-size:17px;}
+    .timeline{margin-left:6px;}
+    .cd-num{font-size:26px;min-width:42px;}
+    .tab-btn{flex:1 0 60px;padding:8px 6px;}
+    .tab-icon{font-size:15px;}
+    .tab-name{font-size:11px;}
+  }
 </style>
 </head>
 <body>
 
 <!-- COVER -->
 <div class="cover">
-  <!--
-    橘子插畫：整顆橘子（葉子＋莖）+ 橘子切面 + 四朵小白花
-    viewBox 0 0 200 210
-  -->
   <svg class="orange-cover" viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg">
-    <!-- 小白花 1：左上 -->
     <g transform="translate(22,24)">
       <g transform="rotate(0)">  <ellipse cx="0" cy="-9" rx="5" ry="7" fill="white" stroke="#E0E0E0" stroke-width="0.6"/></g>
       <g transform="rotate(72)"> <ellipse cx="0" cy="-9" rx="5" ry="7" fill="white" stroke="#E0E0E0" stroke-width="0.6"/></g>
@@ -141,7 +160,6 @@
       <g transform="rotate(288)"><ellipse cx="0" cy="-9" rx="5" ry="7" fill="white" stroke="#E0E0E0" stroke-width="0.6"/></g>
       <circle r="4" fill="#FFE082" stroke="#FFD54F" stroke-width="0.5"/>
     </g>
-    <!-- 小白花 2：右上 -->
     <g transform="translate(176,18)">
       <g transform="rotate(36)"> <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="white" stroke="#E0E0E0" stroke-width="0.6"/></g>
       <g transform="rotate(108)"><ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="white" stroke="#E0E0E0" stroke-width="0.6"/></g>
@@ -150,7 +168,6 @@
       <g transform="rotate(324)"><ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="white" stroke="#E0E0E0" stroke-width="0.6"/></g>
       <circle r="3" fill="#FFE082" stroke="#FFD54F" stroke-width="0.5"/>
     </g>
-    <!-- 小白花 3：左下 -->
     <g transform="translate(18,186)">
       <g transform="rotate(0)">  <ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="white" stroke="#E0E0E0" stroke-width="0.5"/></g>
       <g transform="rotate(72)"> <ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="white" stroke="#E0E0E0" stroke-width="0.5"/></g>
@@ -159,7 +176,6 @@
       <g transform="rotate(288)"><ellipse cx="0" cy="-6" rx="3.5" ry="5" fill="white" stroke="#E0E0E0" stroke-width="0.5"/></g>
       <circle r="2.5" fill="#FFE082"/>
     </g>
-    <!-- 小白花 4：右下 -->
     <g transform="translate(182,190)">
       <g transform="rotate(20)"> <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="white" stroke="#E0E0E0" stroke-width="0.5"/></g>
       <g transform="rotate(92)"> <ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="white" stroke="#E0E0E0" stroke-width="0.5"/></g>
@@ -168,13 +184,10 @@
       <g transform="rotate(308)"><ellipse cx="0" cy="-7" rx="4" ry="5.5" fill="white" stroke="#E0E0E0" stroke-width="0.5"/></g>
       <circle r="3" fill="#FFE082"/>
     </g>
-
-    <!-- 橘子切面（左下角裝飾） -->
     <g transform="translate(56,148)">
       <circle r="40" fill="#FF8C3D" stroke="#D96000" stroke-width="2"/>
       <circle r="35" fill="white" opacity="0.88"/>
       <circle r="32" fill="#FFB74D"/>
-      <!-- 8條果瓣線 -->
       <line x1="0" y1="0" x2="0"  y2="-32" stroke="white" stroke-width="1.4" opacity="0.9"/>
       <line x1="0" y1="0" x2="0"  y2="-32" stroke="white" stroke-width="1.4" opacity="0.9" transform="rotate(45)"/>
       <line x1="0" y1="0" x2="0"  y2="-32" stroke="white" stroke-width="1.4" opacity="0.9" transform="rotate(90)"/>
@@ -185,17 +198,10 @@
       <line x1="0" y1="0" x2="0"  y2="-32" stroke="white" stroke-width="1.4" opacity="0.9" transform="rotate(315)"/>
       <circle r="5" fill="#FFE082"/>
     </g>
-
-    <!-- 整顆橘子（主角） -->
-    <!-- 葉子左 -->
     <path d="M128 55 Q108 32 88 40 Q105 46 128 55Z" fill="#5DA03A" stroke="#4A8929" stroke-width="0.8"/>
-    <!-- 葉子右 -->
     <path d="M128 55 Q148 30 170 38 Q152 46 128 55Z" fill="#6CB045" stroke="#5A9A35" stroke-width="0.8"/>
-    <!-- 莖 -->
     <line x1="128" y1="55" x2="128" y2="42" stroke="#5DA03A" stroke-width="3" stroke-linecap="round"/>
-    <!-- 橘子本體 -->
     <circle cx="128" cy="120" r="66" fill="#FF8C3D" stroke="#D96000" stroke-width="2.5"/>
-    <!-- 亮光 -->
     <ellipse cx="108" cy="96" rx="22" ry="15" fill="white" opacity="0.18" transform="rotate(-28 108 96)"/>
   </svg>
 
@@ -222,202 +228,254 @@
   </div>
 </div>
 
-<!-- INFO STRIP -->
-<div class="info-strip">
-  <div class="info-card"><div class="icon">🛫</div><div class="label">出發地</div><div class="value">台灣 → 濟州</div></div>
-  <div class="info-card"><div class="icon">🗓️</div><div class="label">旅遊天數</div><div class="value">4天 3夜</div></div>
-  <div class="info-card"><div class="icon">🚗</div><div class="label">主要交通</div><div class="value">樂天租車自駕</div></div>
-  <div class="info-card"><div class="icon">🏨</div><div class="label">住宿</div><div class="value">2間特色飯店</div></div>
-  <div class="info-card"><div class="icon">🍊</div><div class="label">旅行風格</div><div class="value">慢遊 · 拍照 · 美食</div></div>
+<!-- TAB BAR -->
+<div class="tabs-bar" id="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn" id="btn-overview" onclick="showTab('overview')">
+      <span class="tab-icon">🗺</span>
+      <span class="tab-name">概覽</span>
+      <span class="tab-date">行程總覽</span>
+    </button>
+    <button class="tab-btn active" id="btn-day1" onclick="showTab('day1')">
+      <span class="tab-icon">🌈</span>
+      <span class="tab-name">Day 1</span>
+      <span class="tab-date">6/13 抵達</span>
+    </button>
+    <button class="tab-btn" id="btn-day2" onclick="showTab('day2')">
+      <span class="tab-icon">🥯</span>
+      <span class="tab-name">Day 2</span>
+      <span class="tab-date">6/14 文化</span>
+    </button>
+    <button class="tab-btn" id="btn-day3" onclick="showTab('day3')">
+      <span class="tab-icon">🐄</span>
+      <span class="tab-name">Day 3</span>
+      <span class="tab-date">6/15 牛島</span>
+    </button>
+    <button class="tab-btn" id="btn-day4" onclick="showTab('day4')">
+      <span class="tab-icon">✈️</span>
+      <span class="tab-name">Day 4</span>
+      <span class="tab-date">6/16 返台</span>
+    </button>
+  </div>
 </div>
 
-<!-- CONTENT -->
-<div class="container">
+<!-- ============ TAB PANELS ============ -->
 
-  <!-- DAY 1 -->
-  <div class="day-section">
-    <div class="day-header day1">
-      <div class="day-num">01</div>
-      <div class="day-info">
-        <div class="day-label">Day One · June 13</div>
-        <div class="day-title">抵達濟州 · 彩虹初見</div>
-        <div class="day-date">6月13日（抵達日）</div>
-      </div>
-      <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
-        <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
-        <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
-        <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
-        <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
-        <g transform="translate(56,16)">
-          <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <circle r="2" fill="#FFE082"/>
-        </g>
-      </svg>
-    </div>
-    <div class="meal-grid">
-      <div class="meal-card"><div class="emoji">🍜</div><div class="meal-type">早餐</div><div class="meal-name">姊妹麵條</div><div class="meal-note">08:45 · 傳統韓式麵食暖胃</div></div>
-      <div class="meal-card"><div class="emoji">☕</div><div class="meal-type">下午茶</div><div class="meal-name">Haejigae 咖啡廳</div><div class="meal-note">12:15 · 海景咖啡放鬆時光</div></div>
-      <div class="meal-card"><div class="emoji">🥩</div><div class="meal-type">晚餐</div><div class="meal-name">熟成到黑豬肉</div><div class="meal-note">17:11 · 濟州名物必吃</div></div>
-    </div>
-    <div class="timeline">
-      <div class="tl-item"><div class="tl-time">06:10 — 08:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>抵達濟州、取車</div><div class="tl-desc">抵達濟州機場後辦理入境，搭乘接駁巴士前往<strong>樂天租車場</strong>，完成取車（Auto 屋），準備開始自駕之旅！</div></div></div>
-      <div class="tl-item"><div class="tl-time">08:45 — 10:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>姊妹麵條</div><div class="tl-desc">到達濟州的第一餐，熱呼呼的韓式傳統麵條暖胃。車程約15分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">10:05 — 11:40</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>彩虹道路 Rainbow Road</div><div class="tl-desc">濟州著名打卡聖地，色彩繽紛的石板道路延伸至海邊。車程僅5分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">12:15 — 13:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">下午茶</span>Haejigae 咖啡廳</div><div class="tl-desc">坐擁海景的網紅咖啡廳，欣賞碧藍濟州海景。車程35分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">13:05 — 15:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>涯月海岸道路</div><div class="tl-desc">濟州西部最美的海岸線，沿著黑色熔岩海岸漫步，感受大海壯闊。</div></div></div>
-      <div class="tl-item"><div class="tl-time">15:00 — 16:45</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">休息</span>中央公園公寓 Check In</div><div class="tl-desc"><strong>Jeju Central Park Residence</strong>（Agoda 6/13–6/15），整理行李休息。</div></div></div>
-      <div class="tl-item"><div class="tl-time">17:11 — 19:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">晚餐</span>熟成到 黑豬肉</div><div class="tl-desc">步行11分鐘。濟州黑豬肉烤肉，請民宿提前預約 17:00 或 17:30。</div></div></div>
-      <div class="tl-item"><div class="tl-time">19:00 後</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">購物</span>周邊逛逛</div><div class="tl-desc">飯後散步逛附近商圈，最後買 BHC 炸雞回公寓享用！</div></div></div>
-    </div>
-    <div class="tip-box"><h4>🍊 DAY 1 小提醒</h4><ul><li>黑豬肉餐廳須提前請民宿代訂，建議 5/13 前確認</li><li>彩虹道路最佳拍照時間為上午光線柔和時</li><li>取車後先設定好導航再出發</li></ul></div>
+<!-- OVERVIEW -->
+<div class="tab-panel" id="panel-overview">
+  <div class="info-strip">
+    <div class="info-card"><div class="icon">🛫</div><div class="label">出發地</div><div class="value">台灣 → 濟州</div></div>
+    <div class="info-card"><div class="icon">🗓️</div><div class="label">旅遊天數</div><div class="value">4天 3夜</div></div>
+    <div class="info-card"><div class="icon">🚗</div><div class="label">主要交通</div><div class="value">樂天租車自駕</div></div>
+    <div class="info-card"><div class="icon">🏨</div><div class="label">住宿</div><div class="value">2間特色飯店</div></div>
+    <div class="info-card"><div class="icon">🍊</div><div class="label">旅行風格</div><div class="value">慢遊 · 拍照 · 美食</div></div>
   </div>
-
-  <div class="divider"><span>🌸</span></div>
-
-  <!-- DAY 2 -->
-  <div class="day-section">
-    <div class="day-header day2">
-      <div class="day-num">02</div>
-      <div class="day-info">
-        <div class="day-label">Day Two · June 14</div>
-        <div class="day-title">麵包與夢想 · 史努比的午後</div>
-        <div class="day-date">6月14日（文化美食日）</div>
-      </div>
-      <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
-        <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
-        <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
-        <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
-        <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
-        <g transform="translate(8,16)">
-          <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <circle r="2" fill="#FFE082"/>
-        </g>
-      </svg>
-    </div>
-    <div class="meal-grid">
-      <div class="meal-card"><div class="emoji">🧄</div><div class="meal-type">早午餐</div><div class="meal-name">大蒜麵包</div><div class="meal-note">09:35 · 濟州名物伴手禮</div></div>
-      <div class="meal-card"><div class="emoji">🥯</div><div class="meal-type">午餐</div><div class="meal-name">倫敦貝果博物館</div><div class="meal-note">10:40 · 排隊也值得</div></div>
-      <div class="meal-card"><div class="emoji">🍦</div><div class="meal-type">下午點心</div><div class="meal-name">SOLBRE 鹽麵包冰淇淋</div><div class="meal-note">16:35 · 東門市場必買</div></div>
-    </div>
-    <div class="timeline">
-      <div class="tl-item"><div class="tl-time">09:00 — 10:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">名產</span>購買大蒜麵包</div><div class="tl-desc">濟州超人氣名產，鬆軟麵包搭配香濃大蒜奶油，回台必帶。車程約35分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">10:40 — 12:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>倫敦貝果博物館</div><div class="tl-desc">濟州超人氣排隊名店，各種口味貝果搭配創意食材。車程10分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">13:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>史努比樂園 Snoopy Garden</div><div class="tl-desc">以史努比為主題的戶外主題公園，多個場景區域超適合拍照。建議預留3小時。車程30分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">16:35 — 19:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>東門市場 · 七星路</div><div class="tl-desc">濟州最大傳統市場。別錯過：<br>• <strong>SOLBRE 鹽麵包冰淇淋</strong> — 鹹甜滋味絕妙<br>• <strong>LIFEWORK</strong> — 設計感文創小店<br>• 晚餐在市場內解決</div></div></div>
-      <div class="tl-item"><div class="tl-time">19:30 後</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">返回</span>中央公園公寓</div><div class="tl-desc">車程約20分鐘，好好休息準備明天牛島大冒險！</div></div></div>
-    </div>
-    <div class="highlight-box"><h4>今日精選景點</h4><ul><li>史努比樂園有多個打卡點，建議早點入園</li><li>東門市場也有橘子相關伴手禮，可以提前蒐集</li><li>七星路附近有多家韓國連鎖品牌可以逛逛</li></ul></div>
-  </div>
-
-  <div class="divider"><span>🌊</span></div>
-
-  <!-- DAY 3 -->
-  <div class="day-section">
-    <div class="day-header day3">
-      <div class="day-num">03</div>
-      <div class="day-info">
-        <div class="day-label">Day Three · June 15</div>
-        <div class="day-title">牛島一日 · 珊瑚沙灘的奇蹟</div>
-        <div class="day-date">6月15日（牛島探險日）</div>
-      </div>
-      <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
-        <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
-        <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
-        <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
-        <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
-        <g transform="translate(56,55)">
-          <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <circle r="2" fill="#FFE082"/>
-        </g>
-      </svg>
-    </div>
-    <div class="transport-bar"><div class="icon">⛵</div><div class="text"><strong>城山浦港 → 牛島（Udo）搭船</strong><span>車程 75 分鐘到港口 · 搭船 30 分鐘 · 最晚 17:00 船班離島</span></div></div>
-    <div class="tip-box"><h4>📱 牛島開航確認</h4><p>請每日追蹤 IG 限時動態 <strong>@jeju.udo</strong>，確認當日是否正常開航再出發！</p></div>
-    <div class="meal-grid">
-      <div class="meal-card"><div class="emoji">🥜</div><div class="meal-type">島上點心</div><div class="meal-name">花生霜淇淋</div><div class="meal-note">牛島限定 · 限購4盒 $285/盒</div></div>
-      <div class="meal-card"><div class="emoji">🍔</div><div class="meal-type">午餐</div><div class="meal-name">花生 hahahoho 漢堡</div><div class="meal-note">12:30 · 車程5分鐘</div></div>
-      <div class="meal-card"><div class="emoji">🍊</div><div class="meal-type">飲料</div><div class="meal-name">橘子爺爺橘子汁</div><div class="meal-note">現榨濟州橘子汁</div></div>
-    </div>
-    <div class="timeline">
-      <div class="tl-item"><div class="tl-time">08:30 — 10:00</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>前往城山浦港</div><div class="tl-desc">車程約75分鐘，抵達<strong>城山浦港綜合客運碼頭（성산포항종합여객터미널）</strong>。</div></div></div>
-      <div class="tl-item"><div class="tl-time">10:00 — 10:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-tip">準備</span>購票與等候</div><div class="tl-desc">填寫乘船申請書（來回各一張，同行可合填）。<strong>記得帶護照！</strong>預留30分鐘等候。</div></div></div>
-      <div class="tl-item"><div class="tl-time">10:30 — 11:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">搭船</span>前往牛島 Udo</div><div class="tl-desc">約30分鐘船程。抵達後立刻租賃電動三輪車，需換駕照A。</div></div></div>
-      <div class="tl-item"><div class="tl-time">11:10 — 12:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">環島</span>牛島環島之旅</div><div class="tl-desc">騎乘電動三輪車環繞牛島，途中必吃<strong>花生霜淇淋</strong>和花生餅乾（限購4盒）。</div></div></div>
-      <div class="tl-item"><div class="tl-time">12:30 — 14:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>花生 hahahoho 漢堡</div><div class="tl-desc">牛島特色花生漢堡，口感獨特。車程約5分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">14:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>牛島深度遊覽</div><div class="tl-desc">🏖 <strong>西濱白沙（珊瑚沙）</strong>— 紅藻堆積的白色沙灘，海水層次分明<br>🌊 <strong>下高水洞海水浴場</strong> — 沙質細軟，海水淺且清澈<br>🕳 <strong>東岸鯨窟</strong> — 巨大海蝕洞穴<br>⛰ <strong>牛島峰</strong> — 最高點，步行20分鐘可遠眺城山日出峰</div></div></div>
-      <div class="tl-item"><div class="tl-time">16:00 — 16:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">返航</span>搭船離開牛島</div><div class="tl-desc">最晚船班 <strong>17:00</strong>，去程時別忘了在船上拍照！</div></div></div>
-      <div class="tl-item"><div class="tl-time">16:30 — 晚上</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">住宿</span>前往 The Jade Hotel</div><div class="tl-desc"><strong>The Jade Hotel</strong>（Booking 6/15–6/16），周邊有多家餐廳可選擇晚餐。</div></div></div>
-    </div>
-    <div class="highlight-box"><h4>牛島必購清單</h4><ul><li>花生霜淇淋 — 牛島限定，口感濃郁</li><li>Udo Sand 花生餅乾 — 限購4盒（$285/盒）</li><li>橘子爺爺橘子汁 — 鮮榨現喝，回甘無比</li></ul></div>
-  </div>
-
-  <div class="divider"><span>🍊</span></div>
-
-  <!-- DAY 4 -->
-  <div class="day-section">
-    <div class="day-header day4">
-      <div class="day-num">04</div>
-      <div class="day-info">
-        <div class="day-label">Day Four · June 16</div>
-        <div class="day-title">輕食晨光 · 大蒜麵包帶走</div>
-        <div class="day-date">6月16日（離開日）</div>
-      </div>
-      <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
-        <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
-        <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
-        <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
-        <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
-        <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
-        <g transform="translate(8,55)">
-          <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
-          <circle r="2" fill="#FFE082"/>
-        </g>
-      </svg>
-    </div>
-    <div class="meal-grid">
-      <div class="meal-card"><div class="emoji">🛒</div><div class="meal-type">早餐</div><div class="meal-name">便利商店輕食</div><div class="meal-note">09:00 · GS25 / CU 暖胃出發</div></div>
-      <div class="meal-card"><div class="emoji">🧄</div><div class="meal-type">伴手禮</div><div class="meal-name">大蒜麵包</div><div class="meal-note">13:00 · 帶走最美味的濟州記憶</div></div>
-      <div class="meal-card"><div class="emoji">🍱</div><div class="meal-type">午點</div><div class="meal-name">Saeuri 蝦子飯捲</div><div class="meal-note">14:05 · 可愛蝦子飯捲</div></div>
-    </div>
-    <div class="timeline">
-      <div class="tl-item"><div class="tl-time">08:00 — 09:00</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">準備</span>起床、整理行李退房</div><div class="tl-desc">The Jade Hotel 退房，整理行李放置車內。</div></div></div>
-      <div class="tl-item"><div class="tl-time">09:00 — 09:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>便利商店輕食</div><div class="tl-desc">退房後就近到 GS25 或 CU，買三角飯糰、熱咖啡輕鬆開啟最後一天。</div></div></div>
-      <div class="tl-item"><div class="tl-time">09:30 — 11:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>濟州水族館</div><div class="tl-desc">濟州最大水族館，展示多種海洋生物，悠閒遊覽後驅車前往購買大蒜麵包。車程10分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">11:30 — 13:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">伴手禮</span>大蒜麵包採購</div><div class="tl-desc">濟州必買人氣伴手禮！建議多買幾袋帶回台灣，記得確認保存期限。車程約60分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">13:00 — 14:05</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午點</span>Saeuri 蝦子飯捲</div><div class="tl-desc">可愛造型飯捲，口感清爽，簡單午點補充體力。車程僅5分鐘。</div></div></div>
-      <div class="tl-item"><div class="tl-time">14:05 — 15:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">採買</span>最後特產採買</div><div class="tl-desc">逛附近特產店，補買牛島花生糖、橘子巧克力等伴手禮，放鬆享受最後的濟州時光。</div></div></div>
-      <div class="tl-item"><div class="tl-time">15:30 — 16:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">伴手禮</span>達克瓦茲 Mochiron 專賣店</div><div class="tl-desc">購買達克瓦茲後前往機場還車，準備搭機返台！</div></div></div>
-    </div>
-    <div class="tip-box"><h4>🍊 離開前 Checklist</h4><ul><li>大蒜麵包（建議放保冷袋）</li><li>達克瓦茲 Mochiron 伴手禮</li><li>牛島花生餅乾（最多4盒）</li><li>按時還車給樂天租車</li><li>護照、機票、手機、充電器確認好！</li></ul></div>
-  </div>
-
-  <div class="divider"><span>✈️</span></div>
-
-  <div style="margin-top:40px">
-    <div class="section-header"><h2>🗺 旅遊資訊總覽</h2></div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px;">
+  <div class="container">
+    <p class="overview-title">🗺 旅遊資訊總覽</p>
+    <div class="overview-grid">
       <div class="tip-box"><h4>🚗 交通</h4><ul><li>樂天租車（機場取還）</li><li>牛島上租電動三輪車環島</li><li>城山浦港搭船往返牛島</li></ul></div>
       <div class="tip-box"><h4>🏨 住宿</h4><ul><li><strong>6/13–6/15</strong>：Jeju Central Park Residence（Agoda）</li><li><strong>6/15–6/16</strong>：The Jade Hotel（Booking）</li></ul></div>
       <div class="tip-box"><h4>📋 行前準備</h4><ul><li>準備護照（牛島搭船需要）</li><li>確認旅平險</li><li>韓國網路（旅遊SIM或WiFi）</li><li>確認租車國際駕照</li></ul></div>
+    </div>
+    <div class="overview-grid" style="margin-top:16px;">
+      <div class="tip-box"><h4>🍊 行程速覽</h4><ul>
+        <li><strong>Day 1 · 6/13</strong>　抵達 → 彩虹道路 → 黑豬肉晚餐</li>
+        <li><strong>Day 2 · 6/14</strong>　大蒜麵包 → 倫敦貝果 → 史努比樂園 → 東門市場</li>
+        <li><strong>Day 3 · 6/15</strong>　牛島一日遊 → 花生霜淇淋 → 珊瑚沙灘</li>
+        <li><strong>Day 4 · 6/16</strong>　水族館 → 大蒜麵包採購 → 飯捲 → 返台</li>
+      </ul></div>
+      <div class="tip-box"><h4>⚠️ 行程提醒</h4><ul>
+        <li>姊妹麵條 09:00 開門，建議 09:10 後到</li>
+        <li>牛島出發前追蹤 <strong>@jeju.udo</strong> 確認開航</li>
+        <li>黑豬肉請提前透過民宿預約</li>
+        <li>Mochiron 達克瓦茲出發前電話確認營業</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<div class="tab-panel active" id="panel-day1">
+  <div class="container">
+    <div class="day-section">
+      <div class="day-header day1">
+        <div class="day-num">01</div>
+        <div class="day-info">
+          <div class="day-label">Day One · June 13</div>
+          <div class="day-title">抵達濟州 · 彩虹初見</div>
+          <div class="day-date">6月13日（抵達日）</div>
+        </div>
+        <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
+          <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
+          <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
+          <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
+          <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
+          <g transform="translate(56,16)">
+            <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <circle r="2" fill="#FFE082"/>
+          </g>
+        </svg>
+      </div>
+      <div class="meal-grid">
+        <div class="meal-card"><div class="emoji">🍜</div><div class="meal-type">早餐</div><div class="meal-name">姊妹麵條</div><div class="meal-note">09:10 · 傳統韓式麵食暖胃</div></div>
+        <div class="meal-card"><div class="emoji">☕</div><div class="meal-type">下午茶</div><div class="meal-name">Haejigae 咖啡廳</div><div class="meal-note">12:15 · 海景咖啡放鬆時光</div></div>
+        <div class="meal-card"><div class="emoji">🥩</div><div class="meal-type">晚餐</div><div class="meal-name">熟成到黑豬肉</div><div class="meal-note">17:11 · 濟州名物必吃</div></div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-time">06:10 — 08:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>抵達濟州、取車</div><div class="tl-desc">抵達濟州機場後辦理入境，搭乘接駁巴士前往<strong>樂天租車場</strong>，完成取車（Auto 屋），準備開始自駕之旅！</div></div></div>
+        <div class="tl-item"><div class="tl-time">09:10 — 10:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>姊妹麵條</div><div class="tl-desc">到達濟州的第一餐，熱呼呼的韓式傳統麵條暖胃。09:00開門，建議09:10後入座。車程約15分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:05 — 11:40</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>彩虹道路 Rainbow Road</div><div class="tl-desc">濟州著名打卡聖地，色彩繽紛的石板道路延伸至海邊。車程僅5分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">12:15 — 13:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">下午茶</span>Haejigae 咖啡廳</div><div class="tl-desc">坐擁海景的網紅咖啡廳，欣賞碧藍濟州海景。每日09:00-21:00。車程35分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">13:05 — 15:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>涯月海岸道路</div><div class="tl-desc">濟州西部最美的海岸線，沿著黑色熔岩海岸漫步，感受大海壯闊。</div></div></div>
+        <div class="tl-item"><div class="tl-time">15:00 — 16:45</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">休息</span>中央公園公寓 Check In</div><div class="tl-desc"><strong>Jeju Central Park Residence</strong>（Agoda 6/13–6/15），整理行李休息。</div></div></div>
+        <div class="tl-item"><div class="tl-time">17:11 — 19:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">晚餐</span>熟成到 黑豬肉</div><div class="tl-desc">步行11分鐘。濟州黑豬肉烤肉，請民宿提前預約 17:00 或 17:30。</div></div></div>
+        <div class="tl-item"><div class="tl-time">19:00 後</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">購物</span>周邊逛逛</div><div class="tl-desc">飯後散步逛附近商圈，最後買 BHC 炸雞回公寓享用！</div></div></div>
+      </div>
+      <div class="tip-box"><h4>🍊 DAY 1 小提醒</h4><ul><li>黑豬肉餐廳須提前請民宿代訂，建議 5/13 前確認</li><li>彩虹道路最佳拍照時間為上午光線柔和時</li><li>取車後先設定好導航再出發</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="tab-panel" id="panel-day2">
+  <div class="container">
+    <div class="day-section">
+      <div class="day-header day2">
+        <div class="day-num">02</div>
+        <div class="day-info">
+          <div class="day-label">Day Two · June 14</div>
+          <div class="day-title">麵包與夢想 · 史努比的午後</div>
+          <div class="day-date">6月14日（文化美食日）</div>
+        </div>
+        <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
+          <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
+          <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
+          <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
+          <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
+          <g transform="translate(8,16)">
+            <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <circle r="2" fill="#FFE082"/>
+          </g>
+        </svg>
+      </div>
+      <div class="meal-grid">
+        <div class="meal-card"><div class="emoji">🧄</div><div class="meal-type">早午餐</div><div class="meal-name">大蒜麵包</div><div class="meal-note">09:35 · 濟州名物伴手禮</div></div>
+        <div class="meal-card"><div class="emoji">🥯</div><div class="meal-type">午餐</div><div class="meal-name">倫敦貝果博物館</div><div class="meal-note">10:40 · 排隊也值得</div></div>
+        <div class="meal-card"><div class="emoji">🍦</div><div class="meal-type">下午點心</div><div class="meal-name">SOLBRE 鹽麵包冰淇淋</div><div class="meal-note">16:35 · 東門市場必買</div></div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-time">09:00 — 10:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">名產</span>購買大蒜麵包</div><div class="tl-desc">濟州超人氣名產，鬆軟麵包搭配香濃大蒜奶油，回台必帶。車程約35分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:40 — 12:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>倫敦貝果博物館</div><div class="tl-desc">濟州超人氣排隊名店，各種口味貝果搭配創意食材。每日08:00-18:00。車程10分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">13:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>史努比樂園 Snoopy Garden</div><div class="tl-desc">以史努比為主題的戶外主題公園，多個場景區域超適合拍照。建議預留3小時。車程30分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">16:35 — 19:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>東門市場 · 七星路</div><div class="tl-desc">濟州最大傳統市場。別錯過：<br>• <strong>SOLBRE 鹽麵包冰淇淋</strong> — 鹹甜滋味絕妙<br>• <strong>LIFEWORK</strong> — 設計感文創小店<br>• 晚餐在市場內解決</div></div></div>
+        <div class="tl-item"><div class="tl-time">19:30 後</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">返回</span>中央公園公寓</div><div class="tl-desc">車程約20分鐘，好好休息準備明天牛島大冒險！</div></div></div>
+      </div>
+      <div class="highlight-box"><h4>今日精選景點</h4><ul><li>史努比樂園有多個打卡點，建議早點入園</li><li>東門市場也有橘子相關伴手禮，可以提前蒐集</li><li>七星路附近有多家韓國連鎖品牌可以逛逛</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="tab-panel" id="panel-day3">
+  <div class="container">
+    <div class="day-section">
+      <div class="day-header day3">
+        <div class="day-num">03</div>
+        <div class="day-info">
+          <div class="day-label">Day Three · June 15</div>
+          <div class="day-title">牛島一日 · 珊瑚沙灘的奇蹟</div>
+          <div class="day-date">6月15日（牛島探險日）</div>
+        </div>
+        <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
+          <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
+          <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
+          <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
+          <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
+          <g transform="translate(56,55)">
+            <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <circle r="2" fill="#FFE082"/>
+          </g>
+        </svg>
+      </div>
+      <div class="transport-bar"><div class="icon">⛵</div><div class="text"><strong>城山浦港 → 牛島（Udo）搭船</strong><span>車程 75 分鐘到港口 · 搭船 30 分鐘 · 最晚 17:00 船班離島</span></div></div>
+      <div class="tip-box"><h4>📱 牛島開航確認</h4><p>請每日追蹤 IG 限時動態 <strong>@jeju.udo</strong>，確認當日是否正常開航再出發！</p></div>
+      <div class="meal-grid">
+        <div class="meal-card"><div class="emoji">🥜</div><div class="meal-type">島上點心</div><div class="meal-name">花生霜淇淋</div><div class="meal-note">牛島限定 · 限購4盒 $285/盒</div></div>
+        <div class="meal-card"><div class="emoji">🍔</div><div class="meal-type">午餐</div><div class="meal-name">花生 hahahoho 漢堡</div><div class="meal-note">12:30 · 車程5分鐘</div></div>
+        <div class="meal-card"><div class="emoji">🍊</div><div class="meal-type">飲料</div><div class="meal-name">橘子爺爺橘子汁</div><div class="meal-note">現榨濟州橘子汁</div></div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-time">08:30 — 10:00</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>前往城山浦港</div><div class="tl-desc">車程約75分鐘，抵達<strong>城山浦港綜合客運碼頭（성산포항종합여객터미널）</strong>。</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:00 — 10:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-tip">準備</span>購票與等候</div><div class="tl-desc">填寫乘船申請書（來回各一張，同行可合填）。<strong>記得帶護照！</strong>預留30分鐘等候。</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:30 — 11:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">搭船</span>前往牛島 Udo</div><div class="tl-desc">約30分鐘船程。抵達後立刻租賃電動三輪車，需換駕照A。</div></div></div>
+        <div class="tl-item"><div class="tl-time">11:10 — 12:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">環島</span>牛島環島之旅</div><div class="tl-desc">騎乘電動三輪車環繞牛島，途中必吃<strong>花生霜淇淋</strong>和花生餅乾（限購4盒）。</div></div></div>
+        <div class="tl-item"><div class="tl-time">12:30 — 14:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>花生 hahahoho 漢堡</div><div class="tl-desc">牛島特色花生漢堡，口感獨特。車程約5分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">14:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>牛島深度遊覽</div><div class="tl-desc">🏖 <strong>西濱白沙（珊瑚沙）</strong>— 紅藻堆積的白色沙灘，海水層次分明<br>🌊 <strong>下高水洞海水浴場</strong> — 沙質細軟，海水淺且清澈<br>🕳 <strong>東岸鯨窟</strong> — 巨大海蝕洞穴<br>⛰ <strong>牛島峰</strong> — 最高點，步行20分鐘可遠眺城山日出峰</div></div></div>
+        <div class="tl-item"><div class="tl-time">16:00 — 16:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">返航</span>搭船離開牛島</div><div class="tl-desc">最晚船班 <strong>17:00</strong>，去程時別忘了在船上拍照！</div></div></div>
+        <div class="tl-item"><div class="tl-time">16:30 — 晚上</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">住宿</span>前往 The Jade Hotel</div><div class="tl-desc"><strong>The Jade Hotel</strong>（Booking 6/15–6/16），周邊有多家餐廳可選擇晚餐。</div></div></div>
+      </div>
+      <div class="highlight-box"><h4>牛島必購清單</h4><ul><li>花生霜淇淋 — 牛島限定，口感濃郁</li><li>Udo Sand 花生餅乾 — 限購4盒（$285/盒）</li><li>橘子爺爺橘子汁 — 鮮榨現喝，回甘無比</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 4 -->
+<div class="tab-panel" id="panel-day4">
+  <div class="container">
+    <div class="day-section">
+      <div class="day-header day4">
+        <div class="day-num">04</div>
+        <div class="day-info">
+          <div class="day-label">Day Four · June 16</div>
+          <div class="day-title">輕食晨光 · 大蒜麵包帶走</div>
+          <div class="day-date">6月16日（離開日）</div>
+        </div>
+        <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
+          <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
+          <path d="M31 22 Q44 8 54 15 Q44 18 31 22Z" fill="#6CB045"/>
+          <line x1="31" y1="22" x2="31" y2="13" stroke="#5DA03A" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="31" cy="46" r="24" fill="#FF8C3D" stroke="#D96000" stroke-width="1.8"/>
+          <ellipse cx="22" cy="36" rx="9" ry="6" fill="white" opacity="0.2" transform="rotate(-25 22 36)"/>
+          <g transform="translate(8,55)">
+            <g transform="rotate(0)">  <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(72)"> <ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(144)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(216)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <g transform="rotate(288)"><ellipse cx="0" cy="-5" rx="2.8" ry="3.8" fill="white" stroke="#DDD" stroke-width="0.4"/></g>
+            <circle r="2" fill="#FFE082"/>
+          </g>
+        </svg>
+      </div>
+      <div class="meal-grid">
+        <div class="meal-card"><div class="emoji">🛒</div><div class="meal-type">早餐</div><div class="meal-name">便利商店輕食</div><div class="meal-note">09:00 · GS25 / CU 暖胃出發</div></div>
+        <div class="meal-card"><div class="emoji">🧄</div><div class="meal-type">伴手禮</div><div class="meal-name">大蒜麵包</div><div class="meal-note">13:00 · 帶走最美味的濟州記憶</div></div>
+        <div class="meal-card"><div class="emoji">🍱</div><div class="meal-type">午點</div><div class="meal-name">Saeuri 蝦子飯捲</div><div class="meal-note">14:05 · 可愛蝦子飯捲</div></div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-time">08:00 — 09:00</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">準備</span>起床、整理行李退房</div><div class="tl-desc">The Jade Hotel 退房，整理行李放置車內。</div></div></div>
+        <div class="tl-item"><div class="tl-time">09:00 — 09:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>便利商店輕食</div><div class="tl-desc">退房後就近到 GS25 或 CU，買三角飯糰、熱咖啡輕鬆開啟最後一天。</div></div></div>
+        <div class="tl-item"><div class="tl-time">09:30 — 11:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>濟州水族館</div><div class="tl-desc">濟州最大水族館，展示多種海洋生物，悠閒遊覽後驅車前往購買大蒜麵包。車程10分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">11:30 — 13:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">伴手禮</span>大蒜麵包採購</div><div class="tl-desc">濟州必買人氣伴手禮！建議多買幾袋帶回台灣，記得確認保存期限。車程約60分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">13:00 — 14:05</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午點</span>Saeuri 蝦子飯捲</div><div class="tl-desc">可愛造型飯捲，口感清爽，簡單午點補充體力。車程僅5分鐘。</div></div></div>
+        <div class="tl-item"><div class="tl-time">14:05 — 15:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">採買</span>最後特產採買</div><div class="tl-desc">逛附近特產店，補買牛島花生糖、橘子巧克力等伴手禮，放鬆享受最後的濟州時光。</div></div></div>
+        <div class="tl-item"><div class="tl-time">15:30 — 16:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">伴手禮</span>達克瓦茲 Mochiron 專賣店</div><div class="tl-desc">購買達克瓦茲後前往機場還車，準備搭機返台！</div></div></div>
+      </div>
+      <div class="tip-box"><h4>🍊 離開前 Checklist</h4><ul><li>大蒜麵包（建議放保冷袋）</li><li>達克瓦茲 Mochiron 伴手禮</li><li>牛島花生餅乾（最多4盒）</li><li>按時還車給樂天租車</li><li>護照、機票、手機、充電器確認好！</li></ul></div>
     </div>
   </div>
 </div>
@@ -446,6 +504,7 @@
 
 <script>
 (function(){
+  // Countdown
   var dep=new Date('2026-06-13T06:10:00+09:00');
   function pad(n){return String(n).padStart(2,'0');}
   function tick(){
@@ -458,6 +517,19 @@
   }
   tick();setInterval(tick,1000);
 })();
+
+// Tab switching
+function showTab(name){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('panel-'+name).classList.add('active');
+  document.getElementById('btn-'+name).classList.add('active');
+  var bar=document.getElementById('tabs-bar');
+  var barTop=bar.getBoundingClientRect().top+window.pageYOffset;
+  if(window.pageYOffset>barTop){
+    window.scrollTo({top:barTop,behavior:'smooth'});
+  }
+}
 </script>
 </body>
 </html>
