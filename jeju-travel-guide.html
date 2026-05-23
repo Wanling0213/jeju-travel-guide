@@ -59,6 +59,8 @@
   .tab-icon{font-size:17px;line-height:1;}
   .tab-name{font-size:12px;font-weight:700;color:var(--brown-dark);line-height:1.3;}
   .tab-date{font-size:10px;color:var(--brown-light);letter-spacing:0.3px;}
+  .today-badge{display:block;background:var(--green);color:#fff;font-size:8px;font-weight:700;padding:1px 6px;border-radius:6px;letter-spacing:0.5px;margin-top:2px;line-height:1.5;}
+  .tab-btn.active .today-badge{background:rgba(255,255,255,0.30);color:#fff;}
 
   /* TAB PANELS */
   .tab-panel{display:none;}
@@ -941,12 +943,30 @@ function toggleDark(){
   document.getElementById('dark-toggle').textContent = isDark ? '☀️' : '🌙';
 }
 
+function autoHighlightDay(){
+  var now = new Date();
+  var key = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate();
+  var dayMap = {'2026-6-13':'day1','2026-6-14':'day2','2026-6-15':'day3','2026-6-16':'day4'};
+  var tab = dayMap[key];
+  if(tab){
+    showTab(tab);
+    var btn = document.getElementById('btn-'+tab);
+    if(btn){
+      var badge = document.createElement('span');
+      badge.className = 'today-badge';
+      badge.textContent = '今日';
+      btn.appendChild(badge);
+    }
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function(){
   todoInit();
   if(localStorage.getItem('dark')){
     document.body.classList.add('dark');
     document.getElementById('dark-toggle').textContent = '☀️';
   }
+  autoHighlightDay();
 });
 
 if('serviceWorker' in navigator){
