@@ -143,6 +143,62 @@
   .flight-arrow{color:var(--orange);font-size:20px;flex-shrink:0;}
   .flight-meta{font-size:12px;color:var(--brown-light);text-align:center;border-top:1px solid var(--yellow-soft);padding-top:10px;line-height:1.8;}
 
+  /* TODO TAB */
+  .todo-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+  .todo-filter{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+  .filter-btn{border:2px solid var(--yellow-accent);background:var(--white);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--brown);cursor:pointer;font-family:'Noto Sans TC',sans-serif;transition:all 0.18s;}
+  .filter-btn.active{background:var(--orange);border-color:var(--orange-dark);color:white;}
+  .todo-add-btn{background:var(--orange);color:white;border:none;border-radius:14px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;white-space:nowrap;}
+  .todo-add-btn:hover{background:var(--orange-dark);}
+  .todo-form{background:var(--white);border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-bottom:20px;display:none;border:2px solid var(--yellow-accent);}
+  .todo-form.open{display:block;}
+  .todo-form input,.todo-form select,.todo-form textarea{width:100%;border:2px solid var(--yellow-accent);border-radius:10px;padding:9px 12px;font-size:13px;font-family:'Noto Sans TC',sans-serif;color:var(--text-main);background:var(--cream);margin-bottom:10px;outline:none;}
+  .todo-form input:focus,.todo-form select:focus,.todo-form textarea:focus{border-color:var(--orange);}
+  .todo-form textarea{resize:vertical;min-height:60px;}
+  .form-row{display:flex;gap:10px;}
+  .form-row>*{flex:1;}
+  .form-actions{display:flex;gap:8px;justify-content:flex-end;}
+  .btn-cancel{background:var(--cream);border:2px solid var(--yellow-accent);border-radius:10px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Noto Sans TC',sans-serif;color:var(--brown);}
+  .btn-save{background:var(--orange);color:white;border:none;border-radius:10px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans TC',sans-serif;}
+  .todo-group{margin-bottom:24px;}
+  .todo-group-title{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--brown-light);text-transform:uppercase;margin-bottom:10px;padding-left:4px;}
+  .todo-item{display:flex;align-items:flex-start;gap:12px;background:var(--white);border-radius:14px;padding:14px 16px;margin-bottom:8px;box-shadow:var(--shadow);border-left:4px solid transparent;transition:opacity 0.2s;}
+  .todo-item[data-status="完成"]{opacity:0.55;border-left-color:#A5D6A7;}
+  .todo-item[data-status="進行中"]{border-left-color:var(--orange);}
+  .todo-item[data-status="待辦"]{border-left-color:var(--yellow-accent);}
+  .todo-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--yellow-accent);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all 0.18s;}
+  .todo-item[data-status="完成"] .todo-check{background:var(--green);border-color:var(--green);}
+  .todo-item[data-status="進行中"] .todo-check{background:var(--orange);border-color:var(--orange);}
+  .todo-check svg{display:none;}
+  .todo-item[data-status="完成"] .todo-check svg,.todo-item[data-status="進行中"] .todo-check svg{display:block;}
+  .todo-body{flex:1;min-width:0;}
+  .todo-name{font-size:14px;font-weight:600;color:var(--text-main);margin-bottom:3px;}
+  .todo-item[data-status="完成"] .todo-name{text-decoration:line-through;color:var(--brown-light);}
+  .todo-notes{font-size:12px;color:var(--text-sub);}
+  .todo-cat{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--orange-pale);color:var(--orange-dark);margin-right:6px;}
+  .todo-actions{display:flex;gap:6px;flex-shrink:0;}
+  .todo-cycle{background:none;border:none;cursor:pointer;font-size:18px;opacity:0.5;line-height:1;padding:0;}
+  .todo-cycle:hover{opacity:1;}
+  .todo-del{background:none;border:none;cursor:pointer;font-size:15px;opacity:0.35;line-height:1;padding:0;}
+  .todo-del:hover{opacity:0.8;}
+  .todo-edit-btn{background:none;border:none;cursor:pointer;font-size:14px;opacity:0.35;line-height:1;padding:0;}
+  .todo-edit-btn:hover{opacity:0.8;}
+  .todo-editing{background:var(--cream)!important;border:2px solid var(--orange)!important;border-left:4px solid var(--orange)!important;align-items:flex-start;}
+  .todo-edit-form{width:100%;}
+  .todo-edit-form input,.todo-edit-form select,.todo-edit-form textarea{width:100%;border:1px solid var(--yellow-accent);border-radius:8px;padding:7px 10px;font-size:12px;font-family:'Noto Sans TC',sans-serif;color:var(--text-main);background:var(--white);margin-bottom:8px;outline:none;box-sizing:border-box;}
+  .todo-edit-form input:focus,.todo-edit-form select:focus,.todo-edit-form textarea:focus{border-color:var(--orange);}
+  .todo-edit-form .form-row{display:flex;gap:8px;}
+  .todo-edit-form .form-row>*{flex:1;margin-bottom:8px;}
+  .todo-edit-form textarea{resize:vertical;min-height:50px;margin-bottom:8px;}
+  .todo-edit-form .form-actions{display:flex;gap:6px;justify-content:flex-end;}
+  .todo-empty{text-align:center;padding:40px 20px;color:var(--brown-light);font-size:14px;}
+  .todo-loading{text-align:center;padding:40px;color:var(--brown-light);}
+  .todo-status-bar{display:flex;gap:16px;background:var(--white);border-radius:14px;padding:12px 18px;margin-bottom:20px;box-shadow:var(--shadow);}
+  .todo-stat{text-align:center;flex:1;}
+  .todo-stat .num{font-size:22px;font-weight:700;color:var(--brown-dark);}
+  .todo-stat .lbl{font-size:10px;color:var(--brown-light);letter-spacing:1px;}
+  .todo-error{background:#FFF3F3;border:2px solid #EF9A9A;border-radius:14px;padding:16px;color:#C62828;font-size:13px;margin-bottom:16px;}
+
   /* MAP LINK */
   .map-link{display:inline-flex;align-items:center;gap:3px;margin-top:6px;color:var(--orange);font-size:11px;font-weight:600;text-decoration:none;background:var(--orange-pale);border-radius:8px;padding:3px 9px;}
   .map-link:hover{background:var(--orange);color:white;}
@@ -214,6 +270,11 @@
       <span class="tab-icon">✈️</span>
       <span class="tab-name">Day 4</span>
       <span class="tab-date">6/16 返台</span>
+    </button>
+    <button class="tab-btn" id="btn-todo" onclick="showTab('todo')">
+      <span class="tab-icon">✅</span>
+      <span class="tab-name">代辦</span>
+      <span class="tab-date">Notion 同步</span>
     </button>
   </div>
 </div>
@@ -382,7 +443,8 @@
         <div class="tl-item"><div class="tl-time">10:40 — 12:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>倫敦貝果博物館</div><div class="tl-desc">濟州超人氣排隊名店，各種口味貝果搭配創意食材。每日08:00-18:00。車程10分鐘。<br><a href="https://naver.me/FJ6YMyT4" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">13:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>史努比樂園 Snoopy Garden</div><div class="tl-desc">以史努比為主題的戶外主題公園，多個場景區域超適合拍照。建議預留3小時。車程30分鐘。<br><a href="https://map.naver.com/v5/search/스누피가든" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">16:35 — 19:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>東門市場 · 七星路</div><div class="tl-desc">濟州最大傳統市場。別錯過：<br>• <strong>SOLBRE 鹽麵包冰淇淋</strong> — 鹹甜滋味絕妙<br>• <strong>LIFEWORK</strong> — 設計感文創小店<br>• 晚餐在市場內解決<br><a href="https://map.naver.com/v5/search/동문재래시장" target="_blank" class="map-link">📍 東門市場</a> <a href="https://map.naver.com/v5/search/솔브레+제주동문" target="_blank" class="map-link">📍 SOLBRE</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">19:30 後</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">返回</span>中央公園公寓</div><div class="tl-desc">車程約20分鐘，好好休息準備明天牛島大冒險！</div></div></div>
+        <div class="tl-item"><div class="tl-time">19:30 — 21:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">逛街</span>中央地下街</div><div class="tl-desc">從<strong>12號出口</strong>進入的濟州市區地下購物街，服飾、小物、美妝一次逛齊。<br><a href="https://map.naver.com/v5/search/중앙지하상가+제주" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">21:00 後</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">返回</span>中央公園公寓</div><div class="tl-desc">步行返回，好好休息準備明天牛島大冒險！</div></div></div>
       </div>
       <div class="highlight-box"><h4>今日精選景點</h4><ul><li>史努比樂園有多個打卡點，建議早點入園</li><li>東門市場也有橘子相關伴手禮，可以提前蒐集</li><li>七星路附近有多家韓國連鎖品牌可以逛逛</li></ul></div>
     </div>
@@ -427,13 +489,13 @@
         <div class="tl-item"><div class="tl-time">08:30 — 10:00</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>前往城山浦港</div><div class="tl-desc">車程約75分鐘，抵達<strong>城山浦港綜合客運碼頭（성산포항종합여객터미널）</strong>。<br><a href="https://map.naver.com/v5/search/성산포항종합여객터미널" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">10:00 — 10:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-tip">準備</span>購票與等候</div><div class="tl-desc">填寫乘船申請書（來回各一張，同行可合填）。<strong>記得帶護照！</strong>預留30分鐘等候。</div></div></div>
         <div class="tl-item"><div class="tl-time">10:30 — 11:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">搭船</span>前往牛島 Udo</div><div class="tl-desc">約30分鐘船程。抵達後立刻租賃電動三輪車，需換駕照A。</div></div></div>
-        <div class="tl-item"><div class="tl-time">11:10 — 12:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">環島</span>牛島環島之旅</div><div class="tl-desc">騎乘電動三輪車環繞牛島，途中必吃<strong>花生霜淇淋</strong>和花生餅乾（限購4盒）。</div></div></div>
+        <div class="tl-item"><div class="tl-time">11:10 — 12:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">環島</span>牛島環島之旅</div><div class="tl-desc">騎乘電動三輪車環繞牛島，途中必買：<br>• <strong>花生霜淇淋</strong> — 牛島限定<br>• <strong>Udo Sand 우도 샌드</strong> 花生餅乾（限購4盒，$285/盒）· 10:00–18:00<br>📍 제주 제주시 우도면 우도해안길 780-2 1호<br><a href="https://map.naver.com/v5/search/우도샌드" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">12:30 — 14:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>花生 hahahoho 漢堡</div><div class="tl-desc">牛島特色花生漢堡，口感獨特。車程約5分鐘。<br><a href="https://map.naver.com/v5/search/하하호호버거+우도" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">14:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>牛島深度遊覽</div><div class="tl-desc">🏖 <strong>西濱白沙（珊瑚沙）</strong>— 紅藻堆積的白色沙灘，海水層次分明<br>🌊 <strong>下高水洞海水浴場</strong> — 沙質細軟，海水淺且清澈<br>🕳 <strong>東岸鯨窟</strong> — 巨大海蝕洞穴<br>⛰ <strong>牛島峰</strong> — 最高點，步行20分鐘可遠眺城山日出峰</div></div></div>
         <div class="tl-item"><div class="tl-time">16:00 — 16:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">返航</span>搭船離開牛島</div><div class="tl-desc">最晚船班 <strong>17:00</strong>，去程時別忘了在船上拍照！</div></div></div>
         <div class="tl-item"><div class="tl-time">16:30 — 晚上</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">住宿</span>前往 The Jade Hotel</div><div class="tl-desc"><strong>The Jade Hotel</strong>（Booking 6/15–6/16），周邊有多家餐廳可選擇晚餐。</div></div></div>
       </div>
-      <div class="highlight-box"><h4>牛島必購清單</h4><ul><li>花生霜淇淋 — 牛島限定，口感濃郁</li><li>Udo Sand 花生餅乾 — 限購4盒（$285/盒）</li><li>橘子爺爺橘子汁 — 鮮榨現喝，回甘無比</li></ul></div>
+      <div class="highlight-box"><h4>牛島必購清單</h4><ul><li>花生霜淇淋 — 牛島限定，口感濃郁</li><li><strong>Udo Sand 우도 샌드</strong> 花生餅乾 — 限購4盒（$285/盒）· 10:00–18:00<br>제주 제주시 우도면 우도해안길 780-2 1호</li><li>橘子爺爺橘子汁 — 鮮榨現喝，回甘無比</li></ul></div>
     </div>
   </div>
 </div>
@@ -478,11 +540,60 @@
         <div class="tl-item"><div class="tl-time">13:00 — 14:05</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午點</span>Saeuri 蝦子飯捲</div><div class="tl-desc">可愛造型飯捲，口感清爽，簡單午點補充體力。車程僅5分鐘。<br><a href="https://map.naver.com/v5/search/새우리+제주" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">14:05 — 15:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">採買</span>最後特產採買</div><div class="tl-desc">逛附近特產店，補買牛島花生糖、橘子巧克力等伴手禮，放鬆享受最後的濟州時光。</div></div></div>
         <div class="tl-item"><div class="tl-time">15:30 — 16:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">伴手禮</span>達克瓦茲 Mochiron 專賣店</div><div class="tl-desc">購買達克瓦茲後前往機場還車！<br><a href="https://map.naver.com/v5/search/모찌롱+제주" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">16:30 — 19:30</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">休息</span>機場周邊用餐 / 免稅店</div><div class="tl-desc">還車後在濟州機場附近享用晚餐，逛逛免稅店。回程行李額度 15 kg，記得確認行李重量。</div></div></div>
+        <div class="tl-item"><div class="tl-time">16:30 — 19:30</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">休息</span>機場用餐 / 伴手禮 / 免稅店</div><div class="tl-desc">還車後在濟州機場附近用餐並採買最後伴手禮：<br>• <strong>巴黎貝甜（Paris Baguette）夾心餅乾</strong> — 機場內必買甜點<br>• <strong>大蒜麵包</strong> — 若還沒買可在機場補<br>逛逛免稅店，回程行李額度 15 kg，記得確認行李重量。</div></div></div>
         <div class="tl-item"><div class="tl-time">19:30 — 22:15</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">回程</span>LJ763 濟州 Terminal I → 桃園 T1</div><div class="tl-desc">建議 19:30 前辦理 Check-in。<strong>22:15 起飛</strong>，飛行時間約 2 小時，6/17（三）00:15 抵達桃園國際機場 Terminal 1。</div></div></div>
       </div>
-      <div class="tip-box"><h4>🍊 離開前 Checklist</h4><ul><li>大蒜麵包（建議放保冷袋）</li><li>達克瓦茲 Mochiron 伴手禮</li><li>牛島花生餅乾（最多4盒）</li><li>按時還車給樂天租車</li><li>護照、機票、手機、充電器確認好！</li></ul></div>
+      <div class="tip-box"><h4>🍊 離開前 Checklist</h4><ul><li>巴黎貝甜（Paris Baguette）夾心餅乾</li><li>大蒜麵包（建議放保冷袋）</li><li>達克瓦茲 Mochiron 伴手禮</li><li>Udo Sand 花生餅乾（最多4盒）</li><li>按時還車給樂天租車</li><li>護照、機票、手機、充電器確認好！</li></ul></div>
     </div>
+  </div>
+</div>
+
+<!-- TODO -->
+<div class="tab-panel" id="panel-todo">
+  <div class="container">
+    <div id="todo-error" class="todo-error" style="display:none;"></div>
+
+    <div class="todo-status-bar">
+      <div class="todo-stat"><div class="num" id="stat-total">—</div><div class="lbl">全部</div></div>
+      <div class="todo-stat"><div class="num" id="stat-doing">—</div><div class="lbl">進行中</div></div>
+      <div class="todo-stat"><div class="num" id="stat-done">—</div><div class="lbl">已完成</div></div>
+    </div>
+
+    <div class="todo-toolbar">
+      <div class="todo-filter">
+        <button class="filter-btn active" onclick="setFilter('全部')">全部</button>
+        <button class="filter-btn" onclick="setFilter('待辦')">待辦</button>
+        <button class="filter-btn" onclick="setFilter('進行中')">進行中</button>
+        <button class="filter-btn" onclick="setFilter('完成')">完成</button>
+      </div>
+      <button class="todo-add-btn" onclick="toggleForm()">＋ 新增</button>
+    </div>
+
+    <div class="todo-form" id="todo-form">
+      <input type="text" id="f-name" placeholder="代辦事項名稱 *">
+      <div class="form-row">
+        <select id="f-cat">
+          <option value="行前準備">行前準備</option>
+          <option value="機票住宿">機票住宿</option>
+          <option value="行程確認">行程確認</option>
+          <option value="打包清單">打包清單</option>
+          <option value="其他">其他</option>
+        </select>
+        <select id="f-status">
+          <option value="待辦">待辦</option>
+          <option value="進行中">進行中</option>
+          <option value="完成">完成</option>
+        </select>
+      </div>
+      <textarea id="f-notes" placeholder="備註（選填）"></textarea>
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="toggleForm()">取消</button>
+        <button class="btn-save" onclick="addTask()">儲存到 Notion</button>
+      </div>
+    </div>
+
+    <div id="todo-loading" class="todo-loading">🍊 載入中...</div>
+    <div id="todo-list"></div>
   </div>
 </div>
 
@@ -524,6 +635,180 @@
   tick();setInterval(tick,1000);
 })();
 
+// ============ TODO / NOTION ============
+// ⚠️ 部署 Cloudflare Worker 後，將下方 URL 換成你的 Worker 網址
+const WORKER_URL = 'https://jejunotion.wanling12538.workers.dev';
+
+var allTasks = [];
+var currentFilter = '全部';
+var formOpen = false;
+var editingId = null;
+
+function todoInit(){
+  fetchTasks();
+}
+
+async function fetchTasks(){
+  document.getElementById('todo-loading').style.display='block';
+  document.getElementById('todo-list').innerHTML='';
+  hideError();
+  try{
+    const res = await fetch(WORKER_URL+'/tasks');
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    allTasks = await res.json();
+    renderTasks();
+  }catch(e){
+    showError('無法連線到 Notion：'+e.message+'<br>請確認 Worker URL 已設定且 Notion Integration 正確。');
+  }finally{
+    document.getElementById('todo-loading').style.display='none';
+  }
+}
+
+function renderTasks(){
+  const list = document.getElementById('todo-list');
+  const filtered = currentFilter==='全部' ? allTasks : allTasks.filter(t=>t.status===currentFilter);
+
+  // stats
+  document.getElementById('stat-total').textContent = allTasks.length;
+  document.getElementById('stat-doing').textContent = allTasks.filter(t=>t.status==='進行中').length;
+  document.getElementById('stat-done').textContent  = allTasks.filter(t=>t.status==='完成').length;
+
+  if(!filtered.length){
+    list.innerHTML='<div class="todo-empty">🌸 目前沒有代辦事項</div>';
+    return;
+  }
+
+  // group by category
+  const cats = {};
+  filtered.forEach(t=>{
+    if(!cats[t.category]) cats[t.category]=[];
+    cats[t.category].push(t);
+  });
+
+  const catOrder = ['行前準備','機票住宿','行程確認','打包清單','其他'];
+  let html='';
+  catOrder.forEach(cat=>{
+    if(!cats[cat]) return;
+    html+=`<div class="todo-group"><div class="todo-group-title">${cat}</div>`;
+    cats[cat].forEach(t=>{
+      if(t.id===editingId){
+        const catOpts=['行前準備','機票住宿','行程確認','打包清單','其他'].map(c=>`<option value="${c}"${t.category===c?' selected':''}>${c}</option>`).join('');
+        const stOpts=['待辦','進行中','完成'].map(s=>`<option value="${s}"${t.status===s?' selected':''}>${s}</option>`).join('');
+        html+=`<div class="todo-item todo-editing" data-id="${t.id}" data-status="${t.status}">
+          <div class="todo-edit-form">
+            <input type="text" id="ei-name-${t.id}" value="${escHtml(t.name)}" placeholder="代辦事項名稱">
+            <div class="form-row">
+              <select id="ei-cat-${t.id}">${catOpts}</select>
+              <select id="ei-status-${t.id}">${stOpts}</select>
+            </div>
+            <textarea id="ei-notes-${t.id}" placeholder="備註（選填）">${escHtml(t.notes)}</textarea>
+            <div class="form-actions">
+              <button class="btn-cancel" onclick="cancelEdit()">取消</button>
+              <button class="btn-save" onclick="saveEdit('${t.id}')">儲存</button>
+            </div>
+          </div>
+        </div>`;
+      } else {
+        const done = t.status==='完成';
+        const mid  = t.status==='進行中';
+        html+=`<div class="todo-item" data-id="${t.id}" data-status="${t.status}">
+          <div class="todo-check" onclick="cycleStatus('${t.id}')">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="${done?'M2 6l3 3 5-5':'M4 6h4'}" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="todo-body">
+            <div class="todo-name"><span class="todo-cat">${t.category}</span>${escHtml(t.name)}</div>
+            ${t.notes?`<div class="todo-notes">${escHtml(t.notes)}</div>`:''}
+          </div>
+          <div class="todo-actions">
+            <button class="todo-edit-btn" onclick="editTask('${t.id}')" title="編輯">✏️</button>
+            <button class="todo-del" onclick="deleteTask('${t.id}')" title="刪除">🗑</button>
+          </div>
+        </div>`;
+      }
+    });
+    html+='</div>';
+  });
+  list.innerHTML=html;
+}
+
+async function cycleStatus(id){
+  const task = allTasks.find(t=>t.id===id);
+  if(!task) return;
+  const next = {待辦:'進行中',進行中:'完成',完成:'待辦'}[task.status]||'待辦';
+  task.status=next;
+  renderTasks();
+  try{
+    await fetch(WORKER_URL+'/tasks/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:next})});
+  }catch(e){ showError('更新失敗：'+e.message); }
+}
+
+async function deleteTask(id){
+  if(!confirm('確定刪除這項代辦？')) return;
+  allTasks = allTasks.filter(t=>t.id!==id);
+  renderTasks();
+  try{
+    await fetch(WORKER_URL+'/tasks/'+id,{method:'DELETE'});
+  }catch(e){ showError('刪除失敗：'+e.message); }
+}
+
+function editTask(id){ editingId=id; renderTasks(); }
+function cancelEdit(){ editingId=null; renderTasks(); }
+
+async function saveEdit(id){
+  const task = allTasks.find(t=>t.id===id);
+  if(!task) return;
+  const name = document.getElementById('ei-name-'+id).value.trim();
+  if(!name){ alert('請填寫名稱'); return; }
+  const category = document.getElementById('ei-cat-'+id).value;
+  const status   = document.getElementById('ei-status-'+id).value;
+  const notes    = document.getElementById('ei-notes-'+id).value.trim();
+  task.name=name; task.category=category; task.status=status; task.notes=notes;
+  editingId=null;
+  renderTasks();
+  try{
+    await fetch(WORKER_URL+'/tasks/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,category,status,notes})});
+  }catch(e){ showError('儲存失敗：'+e.message); }
+}
+
+function escHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+async function addTask(){
+  const name = document.getElementById('f-name').value.trim();
+  if(!name){ alert('請填寫代辦事項名稱'); return; }
+  const task = {
+    name,
+    category: document.getElementById('f-cat').value,
+    status: document.getElementById('f-status').value,
+    notes: document.getElementById('f-notes').value.trim(),
+  };
+  try{
+    const res = await fetch(WORKER_URL+'/tasks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(task)});
+    const created = await res.json();
+    allTasks.unshift(created);
+    renderTasks();
+    toggleForm();
+    document.getElementById('f-name').value='';
+    document.getElementById('f-notes').value='';
+  }catch(e){ showError('新增失敗：'+e.message); }
+}
+
+function toggleForm(){
+  formOpen=!formOpen;
+  document.getElementById('todo-form').classList.toggle('open',formOpen);
+  if(formOpen) document.getElementById('f-name').focus();
+}
+
+function setFilter(f){
+  currentFilter=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.textContent===f));
+  renderTasks();
+}
+
+function showError(msg){ const el=document.getElementById('todo-error'); el.innerHTML=msg; el.style.display='block'; }
+function hideError(){ document.getElementById('todo-error').style.display='none'; }
+
 // Tab switching
 function showTab(name){
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
@@ -535,6 +820,7 @@ function showTab(name){
   if(window.pageYOffset>barTop){
     window.scrollTo({top:barTop,behavior:'smooth'});
   }
+  if(name==='todo') todoInit();
 }
 </script>
 </body>
