@@ -193,6 +193,16 @@
   .todo-edit-form .form-actions{display:flex;gap:6px;justify-content:flex-end;}
   .todo-empty{text-align:center;padding:40px 20px;color:var(--brown-light);font-size:14px;}
   .todo-loading{text-align:center;padding:40px;color:var(--brown-light);}
+  /* WEATHER */
+  .weather-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+  @media(max-width:500px){.weather-grid{grid-template-columns:repeat(2,1fr);}}
+  .weather-card{background:var(--white);border-radius:16px;padding:16px 10px;text-align:center;box-shadow:var(--shadow);border:2px solid var(--yellow-accent);}
+  .weather-day{font-size:10px;font-weight:700;color:var(--brown-light);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase;}
+  .weather-icon{font-size:30px;margin:4px 0;}
+  .weather-temp{font-size:13px;font-weight:700;color:var(--brown-dark);}
+  .weather-temp-lo{font-weight:400;color:var(--brown-light);}
+  .weather-rain{font-size:11px;color:#5B9BD5;margin-top:5px;}
+  .weather-na{text-align:center;padding:18px;color:var(--brown-light);font-size:13px;background:var(--white);border-radius:14px;border:2px dashed var(--yellow-accent);}
   .todo-status-bar{display:flex;gap:16px;background:var(--white);border-radius:14px;padding:12px 18px;margin-bottom:20px;box-shadow:var(--shadow);}
   .todo-stat{text-align:center;flex:1;}
   .todo-stat .num{font-size:22px;font-weight:700;color:var(--brown-dark);}
@@ -222,26 +232,6 @@
 </head>
 <body>
 
-<!-- COVER -->
-<div class="cover">
-  <img class="orange-cover" src="Jeju.png" alt="濟州島四天三夜插畫地圖">
-
-  <div class="cover-badge">JEJU ISLAND · 4 DAYS 3 NIGHTS</div>
-
-  <div class="countdown-box" id="countdown-box">
-    <div class="countdown-label">距離出發還有</div>
-    <div class="countdown-display">
-      <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-unit-label">天</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="cd-hours">--</div><div class="cd-unit-label">時</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="cd-minutes">--</div><div class="cd-unit-label">分</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><div class="cd-num" id="cd-seconds">--</div><div class="cd-unit-label">秒</div></div>
-    </div>
-    <div class="countdown-sub">✈ LJ764 · 2026.06.13 03:00 桃園 T1 出發</div>
-  </div>
-</div>
 
 <!-- TAB BAR -->
 <div class="tabs-bar" id="tabs-bar">
@@ -251,7 +241,7 @@
       <span class="tab-name">概覽</span>
       <span class="tab-date">行程總覽</span>
     </button>
-    <button class="tab-btn active" id="btn-day1" onclick="showTab('day1')">
+    <button class="tab-btn" id="btn-day1" onclick="showTab('day1')">
       <span class="tab-icon">🌈</span>
       <span class="tab-name">Day 1</span>
       <span class="tab-date">6/13 抵達</span>
@@ -271,7 +261,7 @@
       <span class="tab-name">Day 4</span>
       <span class="tab-date">6/16 返台</span>
     </button>
-    <button class="tab-btn" id="btn-todo" onclick="showTab('todo')">
+    <button class="tab-btn active" id="btn-todo" onclick="showTab('todo')">
       <span class="tab-icon">✅</span>
       <span class="tab-name">代辦</span>
       <span class="tab-date">Notion 同步</span>
@@ -283,14 +273,41 @@
 
 <!-- OVERVIEW -->
 <div class="tab-panel" id="panel-overview">
-  <div class="info-strip">
-    <div class="info-card"><div class="icon">🛫</div><div class="label">出發地</div><div class="value">台灣 → 濟州</div></div>
-    <div class="info-card"><div class="icon">🗓️</div><div class="label">旅遊天數</div><div class="value">4天 3夜</div></div>
-    <div class="info-card"><div class="icon">🚗</div><div class="label">主要交通</div><div class="value">樂天租車自駕</div></div>
-    <div class="info-card"><div class="icon">🏨</div><div class="label">住宿</div><div class="value">2間特色飯店</div></div>
-    <div class="info-card"><div class="icon">🍊</div><div class="label">旅行風格</div><div class="value">慢遊 · 拍照 · 美食</div></div>
+  <div class="cover">
+    <img src="Jeju_Miffy.png" alt="Jeju Miffy" style="width:min(300px,75vw);height:auto;margin-bottom:14px;filter:drop-shadow(0 4px 14px rgba(217,96,0,0.22));">
+    <div class="countdown-box" id="countdown-box" style="width:min(240px,62vw);padding:10px 16px 9px;">
+      <div class="countdown-label" style="font-size:10px;margin-bottom:7px;">距離出發還有</div>
+      <div class="countdown-display" style="gap:3px;margin-bottom:7px;">
+        <div class="cd-unit"><div class="cd-num" id="cd-days" style="font-size:20px;">--</div><div class="cd-unit-label">天</div></div>
+        <div class="cd-sep" style="font-size:18px;padding-bottom:14px;">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cd-hours" style="font-size:20px;">--</div><div class="cd-unit-label">時</div></div>
+        <div class="cd-sep" style="font-size:18px;padding-bottom:14px;">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cd-minutes" style="font-size:20px;">--</div><div class="cd-unit-label">分</div></div>
+        <div class="cd-sep" style="font-size:18px;padding-bottom:14px;">:</div>
+        <div class="cd-unit"><div class="cd-num" id="cd-seconds" style="font-size:20px;">--</div><div class="cd-unit-label">秒</div></div>
+      </div>
+      <div class="countdown-sub">✈ LJ764 · 2026.06.13 03:00 桃園 T1 出發</div>
+    </div>
   </div>
   <div class="container">
+    <p class="overview-title">🗺 旅遊資訊總覽</p>
+    <div class="overview-grid">
+      <div class="tip-box"><h4>🚗 交通</h4><ul><li>樂天租車（機場取還）</li><li>牛島上租電動三輪車環島</li><li>城山浦港搭船往返牛島</li></ul></div>
+      <div class="tip-box"><h4>🏨 住宿</h4><ul><li><strong>6/13–6/15</strong>：Jeju Central Park Residence（Agoda）</li><li><strong>6/15–6/16</strong>：The Jade Hotel（Booking）</li></ul></div>
+      <div class="tip-box"><h4>📋 行前準備</h4><ul><li>準備護照（牛島搭船需要）</li><li>確認旅平險</li><li>韓國網路（旅遊SIM或WiFi）</li><li>確認租車國際駕照</li></ul></div>
+    </div>
+    <div class="overview-grid" style="margin-top:16px;">
+      <div class="tip-box"><h4>🍊 行程速覽</h4><ul>
+        <li><strong>Day 1 · 6/13</strong>　抵達 → 彩虹道路 → 黑豬肉晚餐</li>
+        <li><strong>Day 2 · 6/14</strong>　大蒜麵包 → 倫敦貝果 → 史努比樂園 → 東門市場</li>
+        <li><strong>Day 3 · 6/15</strong>　牛島一日遊 → 快艇 → Udo Sand → 漢堡</li>
+        <li><strong>Day 4 · 6/16</strong>　水族館 → 大蒜麵包採購 → 飯捲 → 返台</li>
+      </ul></div>
+    </div>
+    <p class="overview-title">☁️ 天氣預測 · 濟州島</p>
+    <div id="weather-loading" class="weather-na">🌤️ 載入天氣資料中...</div>
+    <div id="weather-grid" class="weather-grid" style="display:none;"></div>
+
     <p class="overview-title">✈️ 航班資訊</p>
     <div class="overview-grid">
       <div class="flight-card">
@@ -335,31 +352,11 @@
       </div>
     </div>
 
-    <p class="overview-title">🗺 旅遊資訊總覽</p>
-    <div class="overview-grid">
-      <div class="tip-box"><h4>🚗 交通</h4><ul><li>樂天租車（機場取還）</li><li>牛島上租電動三輪車環島</li><li>城山浦港搭船往返牛島</li></ul></div>
-      <div class="tip-box"><h4>🏨 住宿</h4><ul><li><strong>6/13–6/15</strong>：Jeju Central Park Residence（Agoda）</li><li><strong>6/15–6/16</strong>：The Jade Hotel（Booking）</li></ul></div>
-      <div class="tip-box"><h4>📋 行前準備</h4><ul><li>準備護照（牛島搭船需要）</li><li>確認旅平險</li><li>韓國網路（旅遊SIM或WiFi）</li><li>確認租車國際駕照</li></ul></div>
-    </div>
-    <div class="overview-grid" style="margin-top:16px;">
-      <div class="tip-box"><h4>🍊 行程速覽</h4><ul>
-        <li><strong>Day 1 · 6/13</strong>　抵達 → 彩虹道路 → 黑豬肉晚餐</li>
-        <li><strong>Day 2 · 6/14</strong>　大蒜麵包 → 倫敦貝果 → 史努比樂園 → 東門市場</li>
-        <li><strong>Day 3 · 6/15</strong>　牛島一日遊 → 花生霜淇淋 → 珊瑚沙灘</li>
-        <li><strong>Day 4 · 6/16</strong>　水族館 → 大蒜麵包採購 → 飯捲 → 返台</li>
-      </ul></div>
-      <div class="tip-box"><h4>⚠️ 行程提醒</h4><ul>
-        <li>姊妹麵條 09:00 開門，建議 09:10 後到</li>
-        <li>牛島出發前追蹤 <strong>@jeju.udo</strong> 確認開航</li>
-        <li>黑豬肉請提前透過民宿預約</li>
-        <li>Mochiron 達克瓦茲出發前電話確認營業</li>
-      </ul></div>
-    </div>
   </div>
 </div>
 
 <!-- DAY 1 -->
-<div class="tab-panel active" id="panel-day1">
+<div class="tab-panel" id="panel-day1">
   <div class="container">
     <div class="day-section">
       <div class="day-header day1">
@@ -367,7 +364,7 @@
         <div class="day-info">
           <div class="day-label">Day One · June 13</div>
           <div class="day-title">抵達濟州 · 彩虹初見</div>
-          <div class="day-date">6月13日（抵達日）</div>
+          <div class="day-date">6月13日</div>
         </div>
         <svg class="day-orange" viewBox="0 0 62 72" xmlns="http://www.w3.org/2000/svg">
           <path d="M31 22 Q18 8 8 15 Q18 18 31 22Z" fill="#5DA03A"/>
@@ -384,11 +381,6 @@
             <circle r="2" fill="#FFE082"/>
           </g>
         </svg>
-      </div>
-      <div class="meal-grid">
-        <div class="meal-card"><div class="emoji">🍜</div><div class="meal-type">早餐</div><div class="meal-name">姊妹麵條</div><div class="meal-note">09:10 · 傳統韓式麵食暖胃</div><a href="https://map.naver.com/v5/search/자매국수" target="_blank" class="map-link">📍 地圖</a></div>
-        <div class="meal-card"><div class="emoji">☕</div><div class="meal-type">下午茶</div><div class="meal-name">Haejigae 咖啡廳</div><div class="meal-note">12:15 · 海景咖啡放鬆時光</div><a href="https://map.naver.com/v5/search/해지개" target="_blank" class="map-link">📍 地圖</a></div>
-        <div class="meal-card"><div class="emoji">🥩</div><div class="meal-type">晚餐</div><div class="meal-name">熟成到黑豬肉</div><div class="meal-note">17:00 · 濟州名物必吃</div><a href="https://naver.me/5VxJxudy" target="_blank" class="map-link">📍 地圖</a></div>
       </div>
       <div class="timeline">
         <div class="tl-item"><div class="tl-time">00:30 出發 → 01:00 抵達桃園機場</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">出發</span>前往桃園國際機場 Terminal 1</div><div class="tl-desc">建議凌晨抵達辦理報到。<strong>LJ764</strong> 桃園→濟州，03:00起飛，行李額度 15 kg，記得提前托運。</div></div></div>
@@ -433,11 +425,6 @@
           </g>
         </svg>
       </div>
-      <div class="meal-grid">
-        <div class="meal-card"><div class="emoji">🧄</div><div class="meal-type">早午餐</div><div class="meal-name">大蒜麵包</div><div class="meal-note">09:35 · 濟州名物伴手禮</div><a href="https://map.naver.com/v5/search/제주+마늘빵" target="_blank" class="map-link">📍 地圖</a></div>
-        <div class="meal-card"><div class="emoji">🥯</div><div class="meal-type">午餐</div><div class="meal-name">倫敦貝果博物館</div><div class="meal-note">10:40 · 排隊也值得</div><a href="https://naver.me/FJ6YMyT4" target="_blank" class="map-link">📍 地圖</a></div>
-        <div class="meal-card"><div class="emoji">🍦</div><div class="meal-type">下午點心</div><div class="meal-name">SOLBRE 鹽麵包冰淇淋</div><div class="meal-note">16:35 · 東門市場必買</div><a href="https://map.naver.com/v5/search/솔브레+제주동문" target="_blank" class="map-link">📍 地圖</a></div>
-      </div>
       <div class="timeline">
         <div class="tl-item"><div class="tl-time">09:00 — 10:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">名產</span>購買大蒜麵包</div><div class="tl-desc">濟州超人氣名產，鬆軟麵包搭配香濃大蒜奶油，回台必帶。車程約35分鐘。<br><a href="https://map.naver.com/v5/search/제주+마늘빵" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">10:40 — 12:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>倫敦貝果博物館</div><div class="tl-desc">濟州超人氣排隊名店，各種口味貝果搭配創意食材。每日08:00-18:00。車程10分鐘。<br><a href="https://naver.me/FJ6YMyT4" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
@@ -480,18 +467,15 @@
       </div>
       <div class="transport-bar"><div class="icon">⛵</div><div class="text"><strong>城山浦港 → 牛島（Udo）搭船</strong><span>車程 75 分鐘到港口 · 搭船 30 分鐘 · 最晚 17:00 船班離島</span></div></div>
       <div class="tip-box"><h4>📱 牛島開航確認</h4><p>請每日追蹤 IG 限時動態 <strong>@jeju.udo</strong>，確認當日是否正常開航再出發！</p></div>
-      <div class="meal-grid">
-        <div class="meal-card"><div class="emoji">🥜</div><div class="meal-type">島上點心</div><div class="meal-name">花生霜淇淋</div><div class="meal-note">牛島限定 · 限購4盒 $285/盒</div><a href="https://map.naver.com/v5/search/우도+땅콩아이스크림" target="_blank" class="map-link">📍 地圖</a></div>
-        <div class="meal-card"><div class="emoji">🍔</div><div class="meal-type">午餐</div><div class="meal-name">花生 hahahoho 漢堡</div><div class="meal-note">12:30 · 車程5分鐘</div><a href="https://map.naver.com/v5/search/하하호호버거+우도" target="_blank" class="map-link">📍 地圖</a></div>
-        <div class="meal-card"><div class="emoji">🍊</div><div class="meal-type">飲料</div><div class="meal-name">橘子爺爺橘子汁</div><div class="meal-note">現榨濟州橘子汁</div><a href="https://map.naver.com/v5/search/귤밭할아버지+우도" target="_blank" class="map-link">📍 地圖</a></div>
-      </div>
       <div class="timeline">
         <div class="tl-item"><div class="tl-time">08:30 — 10:00</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>前往城山浦港</div><div class="tl-desc">車程約75分鐘，抵達<strong>城山浦港綜合客運碼頭（성산포항종합여객터미널）</strong>。<br><a href="https://map.naver.com/v5/search/성산포항종합여객터미널" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">10:00 — 10:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-tip">準備</span>購票與等候</div><div class="tl-desc">填寫乘船申請書（來回各一張，同行可合填）。<strong>記得帶護照！</strong>預留30分鐘等候。</div></div></div>
         <div class="tl-item"><div class="tl-time">10:30 — 11:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">搭船</span>前往牛島 Udo</div><div class="tl-desc">約30分鐘船程。抵達後立刻租賃電動三輪車，需換駕照A。</div></div></div>
-        <div class="tl-item"><div class="tl-time">11:10 — 12:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">環島</span>牛島環島之旅</div><div class="tl-desc">騎乘電動三輪車環繞牛島，途中必買：<br>• <strong>花生霜淇淋</strong> — 牛島限定<br>• <strong>Udo Sand 우도 샌드</strong> 花生餅乾（限購4盒，$285/盒）· 10:00–18:00<br>📍 제주 제주시 우도면 우도해안길 780-2 1호<br><a href="https://map.naver.com/v5/search/우도샌드" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">12:30 — 14:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>花生 hahahoho 漢堡</div><div class="tl-desc">牛島特色花生漢堡，口感獨特。車程約5分鐘。<br><a href="https://map.naver.com/v5/search/하하호호버거+우도" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">14:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>牛島深度遊覽</div><div class="tl-desc">🏖 <strong>西濱白沙（珊瑚沙）</strong>— 紅藻堆積的白色沙灘，海水層次分明<br>🌊 <strong>下高水洞海水浴場</strong> — 沙質細軟，海水淺且清澈<br>🕳 <strong>東岸鯨窟</strong> — 巨大海蝕洞穴<br>⛰ <strong>牛島峰</strong> — 最高點，步行20分鐘可遠眺城山日出峰</div></div></div>
+        <div class="tl-item"><div class="tl-time">11:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">租車</span>抵達牛島 · 租賃電動車</div><div class="tl-desc">下船後立刻租賃電動車（需換駕照），準備展開牛島一日遊。</div></div></div>
+        <div class="tl-item"><div class="tl-time">11:10 — 12:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">體驗</span>快艇體驗 — Udoseot 休閒</div><div class="tl-desc">在牛島海岸乘坐快艇，感受刺激的海上飆速！09:00 起開放，建議先電話確認班次。<br><a href="https://map.naver.com/v5/search/우도씨레저" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">12:30 — 14:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">採買</span>Udo Sand · 花生霜淇淋 · 環島</div><div class="tl-desc">騎電動車環島，必買：<br>• <strong>Udo Sand 우도 샌드</strong> 花生餅乾（限購4盒，$285/盒）· 10:00–18:00<br>📍 제주 제주시 우도면 우도해안길 780-2 1호<br>• <strong>花生霜淇淋</strong> — 牛島限定<br><a href="https://map.naver.com/v5/search/우도샌드" target="_blank" class="map-link">📍 Udo Sand</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">14:00 — 15:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>花生 hahahoho 漢堡</div><div class="tl-desc">牛島特色花生漢堡，口感獨特。<br><a href="https://map.naver.com/v5/search/하하호호버거+우도" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">15:30 — 16:00</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">還車</span>歸還電動車 · 前往碼頭</div><div class="tl-desc">將電動車還回租賃店，步行前往碼頭準備搭船。</div></div></div>
         <div class="tl-item"><div class="tl-time">16:00 — 16:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">返航</span>搭船離開牛島</div><div class="tl-desc">最晚船班 <strong>17:00</strong>，去程時別忘了在船上拍照！</div></div></div>
         <div class="tl-item"><div class="tl-time">16:30 — 晚上</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">住宿</span>前往 The Jade Hotel</div><div class="tl-desc"><strong>The Jade Hotel</strong>（Booking 6/15–6/16），周邊有多家餐廳可選擇晚餐。</div></div></div>
       </div>
@@ -527,11 +511,6 @@
           </g>
         </svg>
       </div>
-      <div class="meal-grid">
-        <div class="meal-card"><div class="emoji">🛒</div><div class="meal-type">早餐</div><div class="meal-name">便利商店輕食</div><div class="meal-note">09:00 · GS25 / CU 暖胃出發</div></div>
-        <div class="meal-card"><div class="emoji">🧄</div><div class="meal-type">伴手禮</div><div class="meal-name">大蒜麵包</div><div class="meal-note">13:00 · 帶走最美味的濟州記憶</div><a href="https://map.naver.com/v5/search/제주+마늘빵" target="_blank" class="map-link">📍 地圖</a></div>
-        <div class="meal-card"><div class="emoji">🍱</div><div class="meal-type">午點</div><div class="meal-name">Saeuri 蝦子飯捲</div><div class="meal-note">14:05 · 可愛蝦子飯捲</div><a href="https://map.naver.com/v5/search/새우리+제주" target="_blank" class="map-link">📍 地圖</a></div>
-      </div>
       <div class="timeline">
         <div class="tl-item"><div class="tl-time">08:00 — 09:00</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">準備</span>起床、整理行李退房</div><div class="tl-desc">The Jade Hotel 退房，整理行李放置車內。</div></div></div>
         <div class="tl-item"><div class="tl-time">09:00 — 09:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>便利商店輕食</div><div class="tl-desc">退房後就近到 GS25 或 CU，買三角飯糰、熱咖啡輕鬆開啟最後一天。</div></div></div>
@@ -549,7 +528,7 @@
 </div>
 
 <!-- TODO -->
-<div class="tab-panel" id="panel-todo">
+<div class="tab-panel active" id="panel-todo">
   <div class="container">
     <div id="todo-error" class="todo-error" style="display:none;"></div>
 
@@ -821,7 +800,56 @@ function showTab(name){
     window.scrollTo({top:barTop,behavior:'smooth'});
   }
   if(name==='todo') todoInit();
+  if(name==='overview') fetchWeather();
 }
+
+// ============ WEATHER ============
+const WMO = {
+  0:'☀️',1:'🌤️',2:'⛅',3:'☁️',
+  45:'🌫️',48:'🌫️',
+  51:'🌦️',53:'🌦️',55:'🌦️',
+  61:'🌧️',63:'🌧️',65:'🌧️',
+  71:'❄️',73:'❄️',75:'❄️',77:'❄️',
+  80:'🌦️',81:'🌦️',82:'🌦️',
+  95:'⛈️',96:'⛈️',99:'⛈️'
+};
+const WLABELS = ['Day 1 · 6/13','Day 2 · 6/14','Day 3 · 6/15','Day 4 · 6/16'];
+var weatherLoaded = false;
+
+async function fetchWeather(){
+  if(weatherLoaded) return;
+  var loading = document.getElementById('weather-loading');
+  var grid = document.getElementById('weather-grid');
+  try{
+    var res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=33.4996&longitude=126.5312&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia%2FSeoul&start_date=2026-06-13&end_date=2026-06-16');
+    var data = await res.json();
+    if(!data.daily || !data.daily.time || !data.daily.time.length){
+      loading.textContent = '出發前 14 天起將顯示天氣預測 🌤️';
+      return;
+    }
+    var html = '';
+    data.daily.time.forEach(function(date, i){
+      var hi = Math.round(data.daily.temperature_2m_max[i]);
+      var lo = Math.round(data.daily.temperature_2m_min[i]);
+      var rain = data.daily.precipitation_probability_max[i];
+      var icon = WMO[data.daily.weathercode[i]] || '🌤️';
+      html += '<div class="weather-card">'
+        + '<div class="weather-day">' + WLABELS[i] + '</div>'
+        + '<div class="weather-icon">' + icon + '</div>'
+        + '<div class="weather-temp">' + hi + '° <span class="weather-temp-lo">/ ' + lo + '°</span></div>'
+        + '<div class="weather-rain">💧 ' + rain + '%</div>'
+        + '</div>';
+    });
+    loading.style.display = 'none';
+    grid.innerHTML = html;
+    grid.style.display = 'grid';
+    weatherLoaded = true;
+  }catch(e){
+    loading.textContent = '天氣資料暫時無法取得，請稍後再試。';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function(){ todoInit(); });
 </script>
 </body>
 </html>
