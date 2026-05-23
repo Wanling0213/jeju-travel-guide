@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>濟州島四天三夜 · 放鬆之旅</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FF8C3D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="濟州行程">
+<link rel="apple-touch-icon" href="Jeju_Miffy.png">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
   :root {
@@ -193,6 +199,20 @@
   .todo-edit-form .form-actions{display:flex;gap:6px;justify-content:flex-end;}
   .todo-empty{text-align:center;padding:40px 20px;color:var(--brown-light);font-size:14px;}
   .todo-loading{text-align:center;padding:40px;color:var(--brown-light);}
+  /* LIGHTBOX */
+  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:92vw;max-height:92vh;border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,0.5);}
+  /* CURRENCY */
+  .currency-box{background:var(--white);border-radius:18px;padding:20px;box-shadow:var(--shadow);border:2px solid var(--yellow-accent);margin-bottom:20px;}
+  .currency-rate{text-align:center;font-size:12px;color:var(--brown-light);margin-bottom:14px;letter-spacing:0.5px;}
+  .currency-row{display:flex;align-items:center;gap:10px;background:var(--cream);border-radius:12px;padding:10px 14px;}
+  .currency-flag{font-size:22px;}
+  .currency-code{font-size:13px;font-weight:700;color:var(--brown-dark);width:36px;}
+  .currency-row input{flex:1;border:none;background:transparent;font-size:20px;font-weight:700;color:var(--brown-dark);font-family:'Noto Sans TC',sans-serif;outline:none;text-align:right;}
+  .currency-sep{text-align:center;font-size:20px;color:var(--orange);margin:6px 0;}
+  .currency-refresh{display:block;margin:14px auto 0;background:none;border:2px solid var(--yellow-accent);border-radius:10px;padding:6px 18px;font-size:12px;color:var(--brown);cursor:pointer;font-family:'Noto Sans TC',sans-serif;transition:all 0.18s;}
+  .currency-refresh:hover{border-color:var(--orange);color:var(--orange-dark);}
   /* WEATHER */
   .weather-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
   @media(max-width:500px){.weather-grid{grid-template-columns:repeat(2,1fr);}}
@@ -274,7 +294,7 @@
 <!-- OVERVIEW -->
 <div class="tab-panel" id="panel-overview">
   <div class="cover">
-    <img src="Jeju_Miffy.png" alt="Jeju Miffy" style="width:min(300px,75vw);height:auto;margin-bottom:14px;filter:drop-shadow(0 4px 14px rgba(217,96,0,0.22));">
+    <img src="Jeju_Miffy.png" alt="Jeju Miffy" onclick="openLightbox(this)" style="width:min(300px,75vw);height:auto;margin-bottom:14px;filter:drop-shadow(0 4px 14px rgba(217,96,0,0.22));cursor:zoom-in;">
     <div class="countdown-box" id="countdown-box" style="width:min(240px,62vw);padding:10px 16px 9px;">
       <div class="countdown-label" style="font-size:10px;margin-bottom:7px;">距離出發還有</div>
       <div class="countdown-display" style="gap:3px;margin-bottom:7px;">
@@ -304,6 +324,23 @@
         <li><strong>Day 4 · 6/16</strong>　水族館 → 大蒜麵包採購 → 飯捲 → 返台</li>
       </ul></div>
     </div>
+    <p class="overview-title">💱 匯率換算</p>
+    <div class="currency-box">
+      <div class="currency-rate" id="rate-display">載入匯率中...</div>
+      <div class="currency-row">
+        <span class="currency-flag">🇹🇼</span>
+        <span class="currency-code">TWD</span>
+        <input type="number" id="twd-input" placeholder="0" inputmode="decimal" oninput="convertCurrency('twd')">
+      </div>
+      <div class="currency-sep">⇅</div>
+      <div class="currency-row">
+        <span class="currency-flag">🇰🇷</span>
+        <span class="currency-code">KRW</span>
+        <input type="number" id="krw-input" placeholder="0" inputmode="decimal" oninput="convertCurrency('krw')">
+      </div>
+      <button class="currency-refresh" onclick="fetchRate()">🔄 更新匯率</button>
+    </div>
+
     <p class="overview-title">☁️ 天氣預測 · 濟州島</p>
     <div id="weather-loading" class="weather-na">🌤️ 載入天氣資料中...</div>
     <div id="weather-grid" class="weather-grid" style="display:none;"></div>
@@ -800,7 +837,37 @@ function showTab(name){
     window.scrollTo({top:barTop,behavior:'smooth'});
   }
   if(name==='todo') todoInit();
-  if(name==='overview') fetchWeather();
+  if(name==='overview'){ fetchWeather(); fetchRate(); }
+}
+
+// ============ CURRENCY ============
+var twdToKrw = null;
+
+async function fetchRate(){
+  var display = document.getElementById('rate-display');
+  if(!display) return;
+  display.textContent = '更新中...';
+  try{
+    var res = await fetch('https://open.er-api.com/v6/latest/TWD');
+    var data = await res.json();
+    twdToKrw = data.rates.KRW;
+    var d = new Date(data.time_last_update_utc);
+    var updated = (d.getMonth()+1) + '/' + d.getDate();
+    display.textContent = '1 TWD ≈ ' + twdToKrw.toFixed(1) + ' KRW　· 更新：' + updated;
+  }catch(e){
+    display.textContent = '匯率載入失敗，請稍後再試';
+  }
+}
+
+function convertCurrency(from){
+  if(!twdToKrw) return;
+  if(from==='twd'){
+    var v = parseFloat(document.getElementById('twd-input').value);
+    document.getElementById('krw-input').value = v ? Math.round(v * twdToKrw) : '';
+  } else {
+    var v = parseFloat(document.getElementById('krw-input').value);
+    document.getElementById('twd-input').value = v ? Math.round(v / twdToKrw) : '';
+  }
 }
 
 // ============ WEATHER ============
@@ -850,6 +917,16 @@ async function fetchWeather(){
 }
 
 document.addEventListener('DOMContentLoaded', function(){ todoInit(); });
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js').catch(function(){});
+}
+
+function openLightbox(img){ document.getElementById('lightbox-img').src=img.src; document.getElementById('lightbox').classList.add('open'); }
+function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
 </script>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
 </body>
 </html>

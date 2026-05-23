@@ -1,0 +1,13 @@
+{
+  "name": "濟州島四天三夜行程",
+  "short_name": "濟州行程",
+  "description": "濟州島 6/13–6/16 旅遊行程規劃",
+  "start_url": "./jeju-travel-guide.html",
+  "display": "standalone",
+  "background_color": "#FFFDE7",
+  "theme_color": "#FF8C3D",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "Jeju_Miffy.png", "sizes": "any", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
