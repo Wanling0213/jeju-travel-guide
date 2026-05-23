@@ -203,6 +203,30 @@
   .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
   .lightbox.open{display:flex;}
   .lightbox img{max-width:92vw;max-height:92vh;border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,0.5);}
+
+  /* DARK MODE */
+  body.dark{--cream:#181210;--yellow-soft:#1A1608;--yellow-accent:#6A5518;--orange:#FF9A52;--orange-dark:#FF7020;--orange-pale:#3A1E08;--brown-light:#5E504A;--brown:#9E8A80;--brown-dark:#D4BCA8;--white:#201C18;--text-main:#D0C4BA;--text-sub:#A48880;--shadow:0 4px 20px rgba(0,0,0,0.50);}
+  body.dark .tabs-bar{background:rgba(24,18,16,0.97);}
+  body.dark .cover{background:linear-gradient(160deg,#1A1608 0%,#201C08 55%,#261E08 100%);}
+  body.dark .cover::before{background:rgba(200,80,20,0.08);}
+  body.dark .cover::after{background:rgba(180,140,20,0.10);}
+  body.dark .day-header.day1{background:linear-gradient(135deg,#1A1608,#221E08);border-left-color:#6A5518;}
+  body.dark .day-header.day2{background:linear-gradient(135deg,#1C1408,#221C08);border-left-color:#7A5018;}
+  body.dark .day-header.day3{background:linear-gradient(135deg,#081408,#0C180C);border-left-color:#2A5820;}
+  body.dark .day-header.day4{background:linear-gradient(135deg,#080E18,#0C121E);border-left-color:#184070;}
+  body.dark .tl-content.meal{background:linear-gradient(to right,#1C1210,var(--white));}
+  body.dark .tl-content.spot{background:linear-gradient(to right,#1C1410,var(--white));}
+  body.dark .tl-content.transport{background:linear-gradient(to right,#0E1420,var(--white));}
+  body.dark .tl-content.rest{background:linear-gradient(to right,#0E1810,var(--white));}
+  body.dark .highlight-box{background:linear-gradient(135deg,var(--yellow-soft),var(--cream));}
+  body.dark #countdown-box{background:rgba(18,14,10,0.85)!important;}
+  body.dark .footer{background:linear-gradient(135deg,#181408,#1E1A08);}
+  body.dark .currency-row input{color:var(--text-main);}
+  body.dark input,body.dark select,body.dark textarea{color-scheme:dark;}
+  /* DARK TOGGLE BTN */
+  #dark-toggle{position:fixed;bottom:20px;right:20px;z-index:1001;width:44px;height:44px;border-radius:50%;background:var(--orange);border:2px solid var(--orange-dark);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.25);transition:background 0.2s;}
+  #dark-toggle:hover{background:var(--orange-dark);}
+
   /* CURRENCY */
   .currency-box{background:var(--white);border-radius:18px;padding:20px;box-shadow:var(--shadow);border:2px solid var(--yellow-accent);margin-bottom:20px;}
   .currency-rate{text-align:center;font-size:12px;color:var(--brown-light);margin-bottom:14px;letter-spacing:0.5px;}
@@ -294,19 +318,13 @@
 <!-- OVERVIEW -->
 <div class="tab-panel" id="panel-overview">
   <div class="cover">
-    <img src="Jeju_Miffy.png" alt="Jeju Miffy" onclick="openLightbox(this)" style="width:min(300px,75vw);height:auto;margin-bottom:14px;filter:drop-shadow(0 4px 14px rgba(217,96,0,0.22));cursor:zoom-in;">
-    <div class="countdown-box" id="countdown-box" style="width:min(240px,62vw);padding:10px 16px 9px;">
-      <div class="countdown-label" style="font-size:10px;margin-bottom:7px;">距離出發還有</div>
-      <div class="countdown-display" style="gap:3px;margin-bottom:7px;">
-        <div class="cd-unit"><div class="cd-num" id="cd-days" style="font-size:20px;">--</div><div class="cd-unit-label">天</div></div>
-        <div class="cd-sep" style="font-size:18px;padding-bottom:14px;">:</div>
-        <div class="cd-unit"><div class="cd-num" id="cd-hours" style="font-size:20px;">--</div><div class="cd-unit-label">時</div></div>
-        <div class="cd-sep" style="font-size:18px;padding-bottom:14px;">:</div>
-        <div class="cd-unit"><div class="cd-num" id="cd-minutes" style="font-size:20px;">--</div><div class="cd-unit-label">分</div></div>
-        <div class="cd-sep" style="font-size:18px;padding-bottom:14px;">:</div>
-        <div class="cd-unit"><div class="cd-num" id="cd-seconds" style="font-size:20px;">--</div><div class="cd-unit-label">秒</div></div>
-      </div>
-      <div class="countdown-sub">✈ LJ764 · 2026.06.13 03:00 桃園 T1 出發</div>
+    <img src="Jeju_Miffy.png" alt="Jeju Miffy" onclick="openLightbox(this)" style="width:min(360px,90vw);height:auto;margin-bottom:14px;filter:drop-shadow(0 4px 14px rgba(217,96,0,0.22));cursor:zoom-in;">
+    <div id="countdown-box" style="background:rgba(255,255,255,0.85);border:2px solid var(--yellow-accent);border-radius:14px;padding:7px 16px;display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;">
+      <span style="font-size:11px;color:var(--brown);letter-spacing:1px;margin-right:4px;">距離出發</span>
+      <span id="cd-days" style="font-size:20px;font-weight:700;color:var(--brown-dark);">--</span><span style="font-size:11px;color:var(--brown);">天</span>
+      <span id="cd-hours" style="font-size:20px;font-weight:700;color:var(--brown-dark);">--</span><span style="font-size:11px;color:var(--brown);">時</span>
+      <span id="cd-minutes" style="font-size:20px;font-weight:700;color:var(--brown-dark);">--</span><span style="font-size:11px;color:var(--brown);">分</span>
+      <span id="cd-seconds" style="font-size:20px;font-weight:700;color:var(--orange);">--</span><span style="font-size:11px;color:var(--brown);">秒</span>
     </div>
   </div>
   <div class="container">
@@ -422,10 +440,10 @@
       <div class="timeline">
         <div class="tl-item"><div class="tl-time">00:30 出發 → 01:00 抵達桃園機場</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">出發</span>前往桃園國際機場 Terminal 1</div><div class="tl-desc">建議凌晨抵達辦理報到。<strong>LJ764</strong> 桃園→濟州，03:00起飛，行李額度 15 kg，記得提前托運。</div></div></div>
         <div class="tl-item"><div class="tl-time">03:00 — 06:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">飛行</span>LJ764 桃園 T1 → 濟州 Terminal I</div><div class="tl-desc">飛行時間約 2 小時 10 分。抵達濟州後入境，搭乘接駁巴士前往<strong>樂天租車場</strong>，完成取車（Auto 屋），準備自駕之旅！</div></div></div>
-        <div class="tl-item"><div class="tl-time">09:10 — 10:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>姊妹麵條</div><div class="tl-desc">到達濟州的第一餐，熱呼呼的韓式傳統麵條暖胃。09:00開門，建議09:10後入座。車程約15分鐘。<br><a href="https://map.naver.com/v5/search/자매국수" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">10:05 — 11:40</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>彩虹道路 Rainbow Road</div><div class="tl-desc">濟州著名打卡聖地，色彩繽紛的石板道路延伸至海邊。車程僅5分鐘。<br><a href="https://map.naver.com/v5/search/도두동무지개해안도로" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">09:10 — 10:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>姊妹麵條</div><div class="tl-desc">到達濟州的第一餐，熱呼呼的韓式傳統麵條暖胃。09:00開門，建議09:10後入座。車程約15分鐘。<br><a href="https://map.naver.com/v5/directions/-/126.5170,33.5168,자매국수,,/car" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">10:05 — 11:40</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>彩虹道路 Rainbow Road</div><div class="tl-desc">濟州著名打卡聖地，色彩繽紛的石板道路延伸至海邊。車程僅5分鐘。<br><a href="https://map.naver.com/v5/directions/-/126.4739,33.5093,도두동무지개해안도로,,/car" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">12:15 — 13:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">下午茶</span>Haejigae 咖啡廳</div><div class="tl-desc">坐擁海景的網紅咖啡廳，欣賞碧藍濟州海景。每日09:00-21:00。車程35分鐘。<br><a href="https://map.naver.com/v5/search/해지개" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">13:05 — 15:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>涯月海岸道路</div><div class="tl-desc">濟州西部最美的海岸線，沿著黑色熔岩海岸漫步，感受大海壯闊。<br><a href="https://map.naver.com/v5/search/애월해안도로" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">13:05 — 15:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>涯月海岸道路</div><div class="tl-desc">濟州西部最美的海岸線，沿著黑色熔岩海岸漫步，感受大海壯闊。<br><a href="https://map.naver.com/v5/directions/-/126.3666,33.4782,애월해안도로,,/car" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">15:00 — 16:45</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">休息</span>中央公園公寓 Check In</div><div class="tl-desc"><strong>Jeju Central Park Residence</strong>（Agoda 6/13–6/15），整理行李休息。</div></div></div>
         <div class="tl-item"><div class="tl-time">17:00 — 19:00</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">晚餐</span>熟成到 黑豬肉 ✅ 已預約</div><div class="tl-desc">步行約11分鐘，務必 <strong>17:00 準時</strong> 抵達。<br>📋 予約番號 <strong>1242381359</strong>（숙성도 제주본점）· 2位成人<br><a href="https://naver.me/5VxJxudy" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">19:00 後</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">購物</span>周邊逛逛</div><div class="tl-desc">飯後散步逛附近商圈，最後買 BHC 炸雞回公寓享用！</div></div></div>
@@ -465,9 +483,9 @@
       <div class="timeline">
         <div class="tl-item"><div class="tl-time">09:00 — 10:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">名產</span>購買大蒜麵包</div><div class="tl-desc">濟州超人氣名產，鬆軟麵包搭配香濃大蒜奶油，回台必帶。車程約35分鐘。<br><a href="https://map.naver.com/v5/search/제주+마늘빵" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">10:40 — 12:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午餐</span>倫敦貝果博物館</div><div class="tl-desc">濟州超人氣排隊名店，各種口味貝果搭配創意食材。每日08:00-18:00。車程10分鐘。<br><a href="https://naver.me/FJ6YMyT4" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">13:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>史努比樂園 Snoopy Garden</div><div class="tl-desc">以史努比為主題的戶外主題公園，多個場景區域超適合拍照。建議預留3小時。車程30分鐘。<br><a href="https://map.naver.com/v5/search/스누피가든" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">16:35 — 19:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>東門市場 · 七星路</div><div class="tl-desc">濟州最大傳統市場。別錯過：<br>• <strong>SOLBRE 鹽麵包冰淇淋</strong> — 鹹甜滋味絕妙<br>• <strong>LIFEWORK</strong> — 設計感文創小店<br>• 晚餐在市場內解決<br><a href="https://map.naver.com/v5/search/동문재래시장" target="_blank" class="map-link">📍 東門市場</a> <a href="https://map.naver.com/v5/search/솔브레+제주동문" target="_blank" class="map-link">📍 SOLBRE</a></div></div></div>
-        <div class="tl-item"><div class="tl-time">19:30 — 21:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">逛街</span>中央地下街</div><div class="tl-desc">從<strong>12號出口</strong>進入的濟州市區地下購物街，服飾、小物、美妝一次逛齊。<br><a href="https://map.naver.com/v5/search/중앙지하상가+제주" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">13:00 — 16:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>史努比樂園 Snoopy Garden</div><div class="tl-desc">以史努比為主題的戶外主題公園，多個場景區域超適合拍照。建議預留3小時。車程30分鐘。<br><a href="https://map.naver.com/v5/directions/-/126.7773,33.4425,스누피가든,,/car" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">16:35 — 19:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>東門市場 · 七星路</div><div class="tl-desc">濟州最大傳統市場。別錯過：<br>• <strong>SOLBRE 鹽麵包冰淇淋</strong> — 鹹甜滋味絕妙<br>• <strong>LIFEWORK</strong> — 設計感文創小店<br>• 晚餐在市場內解決<br><a href="https://map.naver.com/v5/directions/-/126.5260,33.5116,동문재래시장,,/car" target="_blank" class="map-link">📍 東門市場</a> <a href="https://map.naver.com/v5/directions/-/126.5278,33.5128,솔브레,,/car" target="_blank" class="map-link">📍 SOLBRE</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">19:30 — 21:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">逛街</span>中央地下街</div><div class="tl-desc">從<strong>12號出口</strong>進入的濟州市區地下購物街，服飾、小物、美妝一次逛齊。<br><a href="https://map.naver.com/v5/directions/-/126.5247,33.5132,중앙지하상가,,/car" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">21:00 後</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">返回</span>中央公園公寓</div><div class="tl-desc">步行返回，好好休息準備明天牛島大冒險！</div></div></div>
       </div>
       <div class="highlight-box"><h4>今日精選景點</h4><ul><li>史努比樂園有多個打卡點，建議早點入園</li><li>東門市場也有橘子相關伴手禮，可以提前蒐集</li><li>七星路附近有多家韓國連鎖品牌可以逛逛</li></ul></div>
@@ -505,7 +523,7 @@
       <div class="transport-bar"><div class="icon">⛵</div><div class="text"><strong>城山浦港 → 牛島（Udo）搭船</strong><span>車程 75 分鐘到港口 · 搭船 30 分鐘 · 最晚 17:00 船班離島</span></div></div>
       <div class="tip-box"><h4>📱 牛島開航確認</h4><p>請每日追蹤 IG 限時動態 <strong>@jeju.udo</strong>，確認當日是否正常開航再出發！</p></div>
       <div class="timeline">
-        <div class="tl-item"><div class="tl-time">08:30 — 10:00</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>前往城山浦港</div><div class="tl-desc">車程約75分鐘，抵達<strong>城山浦港綜合客運碼頭（성산포항종합여객터미널）</strong>。<br><a href="https://map.naver.com/v5/search/성산포항종합여객터미널" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">08:30 — 10:00</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">交通</span>前往城山浦港</div><div class="tl-desc">車程約75分鐘，抵達<strong>城山浦港綜合客運碼頭（성산포항종합여객터미널）</strong>。<br><a href="https://map.naver.com/v5/directions/-/126.9332,33.4721,성산포항,,/car" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">10:00 — 10:30</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-tip">準備</span>購票與等候</div><div class="tl-desc">填寫乘船申請書（來回各一張，同行可合填）。<strong>記得帶護照！</strong>預留30分鐘等候。</div></div></div>
         <div class="tl-item"><div class="tl-time">10:30 — 11:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">搭船</span>前往牛島 Udo</div><div class="tl-desc">約30分鐘船程。抵達後立刻租賃電動三輪車，需換駕照A。</div></div></div>
         <div class="tl-item"><div class="tl-time">11:10</div><div class="tl-content transport"><div class="tl-title"><span class="tag tag-transport">租車</span>抵達牛島 · 租賃電動車</div><div class="tl-desc">下船後立刻租賃電動車（需換駕照），準備展開牛島一日遊。</div></div></div>
@@ -551,7 +569,7 @@
       <div class="timeline">
         <div class="tl-item"><div class="tl-time">08:00 — 09:00</div><div class="tl-content rest"><div class="tl-title"><span class="tag tag-rest">準備</span>起床、整理行李退房</div><div class="tl-desc">The Jade Hotel 退房，整理行李放置車內。</div></div></div>
         <div class="tl-item"><div class="tl-time">09:00 — 09:30</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">早餐</span>便利商店輕食</div><div class="tl-desc">退房後就近到 GS25 或 CU，買三角飯糰、熱咖啡輕鬆開啟最後一天。</div></div></div>
-        <div class="tl-item"><div class="tl-time">09:30 — 11:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>濟州水族館</div><div class="tl-desc">濟州最大水族館，展示多種海洋生物，悠閒遊覽後驅車前往購買大蒜麵包。車程10分鐘。<br><a href="https://map.naver.com/v5/search/아쿠아플라넷+제주" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
+        <div class="tl-item"><div class="tl-time">09:30 — 11:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-spot">景點</span>濟州水族館</div><div class="tl-desc">濟州最大水族館，展示多種海洋生物，悠閒遊覽後驅車前往購買大蒜麵包。車程10分鐘。<br><a href="https://map.naver.com/v5/directions/-/126.9272,33.4325,아쿠아플라넷제주,,/car" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">11:30 — 13:00</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">伴手禮</span>大蒜麵包採購</div><div class="tl-desc">濟州必買人氣伴手禮！建議多買幾袋帶回台灣，記得確認保存期限。車程約60分鐘。<br><a href="https://map.naver.com/v5/search/제주+마늘빵" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">13:00 — 14:05</div><div class="tl-content meal"><div class="tl-title"><span class="tag tag-meal">午點</span>Saeuri 蝦子飯捲</div><div class="tl-desc">可愛造型飯捲，口感清爽，簡單午點補充體力。車程僅5分鐘。<br><a href="https://map.naver.com/v5/search/새우리+제주" target="_blank" class="map-link">📍 Naver Map</a></div></div></div>
         <div class="tl-item"><div class="tl-time">14:05 — 15:30</div><div class="tl-content spot"><div class="tl-title"><span class="tag tag-shop">採買</span>最後特產採買</div><div class="tl-desc">逛附近特產店，補買牛島花生糖、橘子巧克力等伴手禮，放鬆享受最後的濟州時光。</div></div></div>
@@ -916,7 +934,20 @@ async function fetchWeather(){
   }
 }
 
-document.addEventListener('DOMContentLoaded', function(){ todoInit(); });
+// Dark mode
+function toggleDark(){
+  var isDark = document.body.classList.toggle('dark');
+  localStorage.setItem('dark', isDark ? '1' : '');
+  document.getElementById('dark-toggle').textContent = isDark ? '☀️' : '🌙';
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  todoInit();
+  if(localStorage.getItem('dark')){
+    document.body.classList.add('dark');
+    document.getElementById('dark-toggle').textContent = '☀️';
+  }
+});
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js').catch(function(){});
@@ -925,6 +956,7 @@ if('serviceWorker' in navigator){
 function openLightbox(img){ document.getElementById('lightbox-img').src=img.src; document.getElementById('lightbox').classList.add('open'); }
 function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
 </script>
+<button id="dark-toggle" onclick="toggleDark()" title="深/淺色切換">🌙</button>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <img id="lightbox-img" src="" alt="">
 </div>
