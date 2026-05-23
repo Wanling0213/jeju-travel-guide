@@ -225,9 +225,13 @@
   body.dark .footer{background:linear-gradient(135deg,#181408,#1E1A08);}
   body.dark .currency-row input{color:var(--text-main);}
   body.dark input,body.dark select,body.dark textarea{color-scheme:dark;}
-  /* DARK TOGGLE BTN */
-  #dark-toggle{position:fixed;bottom:20px;right:20px;z-index:1001;width:44px;height:44px;border-radius:50%;background:var(--orange);border:2px solid var(--orange-dark);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.25);transition:background 0.2s;}
-  #dark-toggle:hover{background:var(--orange-dark);}
+  /* FIXED BTNS */
+  #dark-toggle,#share-btn{position:fixed;bottom:20px;z-index:1001;width:44px;height:44px;border-radius:50%;background:var(--orange);border:2px solid var(--orange-dark);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.25);transition:background 0.2s;}
+  #dark-toggle{right:20px;}
+  #share-btn{right:72px;}
+  #dark-toggle:hover,#share-btn:hover{background:var(--orange-dark);}
+  /* PULL TO REFRESH */
+  .ptr-indicator{overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--brown);font-weight:600;letter-spacing:1px;height:0;opacity:0;transition:height 0.1s,opacity 0.1s;}
 
   /* CURRENCY */
   .currency-box{background:var(--white);border-radius:18px;padding:20px;box-shadow:var(--shadow);border:2px solid var(--yellow-accent);margin-bottom:20px;}
@@ -586,6 +590,7 @@
 
 <!-- TODO -->
 <div class="tab-panel active" id="panel-todo">
+  <div class="ptr-indicator" id="ptr-indicator"></div>
   <div class="container">
     <div id="todo-error" class="todo-error" style="display:none;"></div>
 
@@ -975,7 +980,75 @@ if('serviceWorker' in navigator){
 
 function openLightbox(img){ document.getElementById('lightbox-img').src=img.src; document.getElementById('lightbox').classList.add('open'); }
 function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
+
+// ============ SWIPE TO SWITCH TABS ============
+(function(){
+  var TAB_ORDER = ['overview','day1','day2','day3','day4','todo'];
+  var sx = 0, sy = 0;
+  document.addEventListener('touchstart', function(e){
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - sx;
+    var dy = e.changedTouches[0].clientY - sy;
+    if(Math.abs(dx) < 55 || Math.abs(dy) > Math.abs(dx) * 0.8) return;
+    var cur = document.querySelector('.tab-btn.active');
+    if(!cur) return;
+    var idx = TAB_ORDER.indexOf(cur.id.replace('btn-',''));
+    if(dx < 0 && idx < TAB_ORDER.length-1) showTab(TAB_ORDER[idx+1]);
+    if(dx > 0 && idx > 0) showTab(TAB_ORDER[idx-1]);
+  }, {passive:true});
+})();
+
+// ============ SHARE ============
+function shareItinerary(){
+  var data = {title:'濟州島四天三夜行程 🍊', text:'6/13–6/16 濟州放鬆之旅，行程都在這裡！', url: location.href};
+  if(navigator.share){
+    navigator.share(data).catch(function(){});
+  } else {
+    navigator.clipboard.writeText(location.href).then(function(){
+      var btn = document.getElementById('share-btn');
+      btn.textContent = '✓';
+      setTimeout(function(){ btn.textContent = '🔗'; }, 1500);
+    });
+  }
+}
+
+// ============ PULL TO REFRESH (TODO TAB) ============
+(function(){
+  var ptr = document.getElementById('ptr-indicator');
+  var THRESHOLD = 65, sy = 0, active = false;
+
+  document.addEventListener('touchstart', function(e){
+    var panel = document.getElementById('panel-todo');
+    if(!panel.classList.contains('active')) return;
+    if(window.scrollY > 24) return;
+    sy = e.touches[0].clientY;
+    active = true;
+  }, {passive:true});
+
+  document.addEventListener('touchmove', function(e){
+    if(!active) return;
+    var dy = e.touches[0].clientY - sy;
+    if(dy <= 0){ active = false; ptr.style.height = '0'; ptr.style.opacity = '0'; return; }
+    var h = Math.min(dy * 0.45, 48);
+    ptr.style.height = h + 'px';
+    ptr.style.opacity = Math.min(dy / THRESHOLD, 1);
+    ptr.textContent = dy >= THRESHOLD ? '🔄 放開重整' : '↓ 下拉重整';
+  }, {passive:true});
+
+  document.addEventListener('touchend', function(e){
+    if(!active) return;
+    var dy = e.changedTouches[0].clientY - sy;
+    active = false;
+    ptr.style.height = '0';
+    ptr.style.opacity = '0';
+    if(dy >= THRESHOLD) fetchTasks();
+  }, {passive:true});
+})();
 </script>
+<button id="share-btn" onclick="shareItinerary()" title="分享行程">🔗</button>
 <button id="dark-toggle" onclick="toggleDark()" title="深/淺色切換">🌙</button>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <img id="lightbox-img" src="" alt="">
